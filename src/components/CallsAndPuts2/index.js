@@ -6,6 +6,7 @@ import { createPortal } from 'react-dom'
 import { Accordion, useAccordionButton } from 'react-bootstrap'
 import './styles.css'
 import MUIDataTable from 'mui-datatables'
+import { Table } from 'antd';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles'
 import { Slider, Tooltip } from '@mui/material'
 import { Link } from 'react-router-dom'
@@ -19,12 +20,7 @@ const columns = [
   { name: 'action', label: 'See More' }
 ]
 
-// const data = [
-//   ['Joe James', 'Test Corp', 'Yonkers', 'NY'],
-//   ['John Walsh', 'Test Corp', 'Hartford', 'CT'],
-//   ['Bob Herm', 'Test Corp', 'Tampa', 'FL'],
-//   ['James Houston', 'Test Corp', 'Dallas', 'TX']
-// ]
+
 
 const options = {
   filterType: 'none'
@@ -89,7 +85,7 @@ function Index () {
         {
           "month":"${monthInput}",
           "strike_percent":"${strikeInput}",
-          "date":"2021-11-23",
+          "date":"${date}",
           "call_value":"${callRange[0]}_${callRange[1]}",
           "put_value":"${putRange[0]}_${putRange[1]}",
           "cp_value":"${CPRange[0]}_${CPRange[1]}"
@@ -108,17 +104,7 @@ function Index () {
       Object.entries(jsonOP).map(([key, value]) => {
         let value2 = value['total']
         op.push({
-          company_name: (
-            <div
-              onClick={() => {
-                handleShowMore(key, value)
-              }}
-              style={{ cursor: 'pointer', color: 'blue' }}
-            >
-              {' '}
-              {key}{' '}
-            </div>
-          ),
+          company_name: key,
           call_ir: value2[0] ? value2[0].toFixed(2) : '-',
           put_ir: value2[1] ? value2[1].toFixed(2) : '-',
           cp_ratio: value2[2] ? value2[2].toFixed(2) : '-',
@@ -164,9 +150,9 @@ function Index () {
     return <span onClick={decoratedOnClick}>{children}</span>
   }
 
-  useEffect(() => {
-    getData()
-  }, [])
+  // useEffect(() => {
+  //   getData()
+  // }, [])
 
   return (
     <div className='main'>
@@ -179,31 +165,41 @@ function Index () {
                     open={showMoreDetails.show}
                     aria-labelledby='modal-modal-title'
                     aria-describedby='modal-modal-description'
+                    style={{ overflow:'scroll'}}
                   >
-                    <Box sx={{ ...style, width: 800 }}>
-                      <div class='text-end' style={{ cursor: 'pointer' }}>
-                        <i class='fas fa-times' onClick={handleCloseModal}></i>
-                      </div>
-                      <Typography
-                        id='modal-modal-title'
-                        variant='h6'
-                        component='h2'
-                      >
-                        {`${showMoreDetails.data['key']}`}
-                      </Typography>
-                      <div class='table-responsive shadow-lg p-3 my-3'>
-                        <table class='table'>
-                          <thead>
-                            <tr>
-                              <td scope='col'>Company Name</td>
-                              <td scope='col'>Call IR</td>
-                              <td scope='col'>Put IR</td>
-                              <td scope='col'>CP Ratio</td>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {Object.entries(showMoreDetails.data['value']).map(
-                              ([key, value]) => {
+                    <div >
+                      <Box sx={{ ...style,width: 800 }}>
+                        <div
+                          style={{}}
+                          class='text-end'
+                          style={{ cursor: 'pointer' }}
+                        >
+                          <i
+                            class='fas fa-times'
+                            onClick={handleCloseModal}
+                          ></i>
+                        </div>
+                        <Typography
+                          id='modal-modal-title'
+                          variant='h6'
+                          component='h2'
+                        >
+                          {`${showMoreDetails.data['key']}`}
+                        </Typography>
+                        <div class='table-responsive shadow-lg p-3 my-3'>
+                          <table class='table'>
+                            <thead>
+                              <tr>
+                                <td scope='col'>Rolling Value</td>
+                                <td scope='col'>Call IR</td>
+                                <td scope='col'>Put IR</td>
+                                <td scope='col'>CP Ratio</td>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {Object.entries(
+                                showMoreDetails.data['value']
+                              ).map(([key, value]) => {
                                 return (
                                   <tr>
                                     <td>{key}</td>
@@ -212,20 +208,20 @@ function Index () {
                                     <td>{value[2].toFixed(2)}</td>
                                   </tr>
                                 )
-                              }
-                            )}
-                          </tbody>
-                        </table>
-                      </div>
-                      <div>
-                        <button
-                          onClick={handleCloseModal}
-                          class='btn btn-danger'
-                        >
-                          Close
-                        </button>
-                      </div>
-                    </Box>
+                              })}
+                            </tbody>
+                          </table>
+                        </div>
+                        <div>
+                          <button
+                            onClick={handleCloseModal}
+                            class='btn btn-danger'
+                          >
+                            Close
+                          </button>
+                        </div>
+                      </Box>
+                    </div>
                   </Modal>,
                   document.getElementById('loading_modal')
                 )
