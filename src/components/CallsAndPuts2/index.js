@@ -63,7 +63,7 @@ function Index () {
       setLoading(true)
       setDataLoaded(true)
 
-      const res = await fetch(`http://dharm.ga/hello/total`, {
+      const res = await fetch(`https://dharm.ga/hello/total`, {
         method: 'POST',
         body: body,
 
