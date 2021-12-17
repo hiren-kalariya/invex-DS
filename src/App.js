@@ -5,7 +5,7 @@ import ValuationReport from './components/ValuationReport/ValuationReport'
 import CallsAndPuts2 from './components/CallsAndPuts2/index'
 
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
-
+ 
 function App () {
   return (
     <Router>
