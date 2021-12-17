@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/https://hiren-teck.github.io/invex-DS/static/css/main.d8ecbe01.chunk.css",
-    "main.js": "/https://hiren-teck.github.io/invex-DS/static/js/main.4da28e97.chunk.js",
-    "main.js.map": "/https://hiren-teck.github.io/invex-DS/static/js/main.4da28e97.chunk.js.map",
-    "runtime-main.js": "/https://hiren-teck.github.io/invex-DS/static/js/runtime-main.229b9723.js",
-    "runtime-main.js.map": "/https://hiren-teck.github.io/invex-DS/static/js/runtime-main.229b9723.js.map",
-    "static/js/2.89779036.chunk.js": "/https://hiren-teck.github.io/invex-DS/static/js/2.89779036.chunk.js",
-    "static/js/2.89779036.chunk.js.map": "/https://hiren-teck.github.io/invex-DS/static/js/2.89779036.chunk.js.map",
-    "static/js/3.b2495afb.chunk.js": "/https://hiren-teck.github.io/invex-DS/static/js/3.b2495afb.chunk.js",
-    "static/js/3.b2495afb.chunk.js.map": "/https://hiren-teck.github.io/invex-DS/static/js/3.b2495afb.chunk.js.map",
-    "index.html": "/https://hiren-teck.github.io/invex-DS/index.html",
-    "static/css/main.d8ecbe01.chunk.css.map": "/https://hiren-teck.github.io/invex-DS/static/css/main.d8ecbe01.chunk.css.map",
-    "static/js/2.89779036.chunk.js.LICENSE.txt": "/https://hiren-teck.github.io/invex-DS/static/js/2.89779036.chunk.js.LICENSE.txt",
-    "static/media/styles.css": "/https://hiren-teck.github.io/invex-DS/static/media/video-resource.b9a8b823.png"
+    "main.css": "/invex-DS/static/css/main.7c4b71a4.chunk.css",
+    "main.js": "/invex-DS/static/js/main.54327b36.chunk.js",
+    "main.js.map": "/invex-DS/static/js/main.54327b36.chunk.js.map",
+    "runtime-main.js": "/invex-DS/static/js/runtime-main.c33c99d9.js",
+    "runtime-main.js.map": "/invex-DS/static/js/runtime-main.c33c99d9.js.map",
+    "static/js/2.89779036.chunk.js": "/invex-DS/static/js/2.89779036.chunk.js",
+    "static/js/2.89779036.chunk.js.map": "/invex-DS/static/js/2.89779036.chunk.js.map",
+    "static/js/3.b2495afb.chunk.js": "/invex-DS/static/js/3.b2495afb.chunk.js",
+    "static/js/3.b2495afb.chunk.js.map": "/invex-DS/static/js/3.b2495afb.chunk.js.map",
+    "index.html": "/invex-DS/index.html",
+    "static/css/main.7c4b71a4.chunk.css.map": "/invex-DS/static/css/main.7c4b71a4.chunk.css.map",
+    "static/js/2.89779036.chunk.js.LICENSE.txt": "/invex-DS/static/js/2.89779036.chunk.js.LICENSE.txt",
+    "static/media/styles.css": "/invex-DS/static/media/video-resource.b9a8b823.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.229b9723.js",
+    "static/js/runtime-main.c33c99d9.js",
     "static/js/2.89779036.chunk.js",
-    "static/css/main.d8ecbe01.chunk.css",
-    "static/js/main.4da28e97.chunk.js"
+    "static/css/main.7c4b71a4.chunk.css",
+    "static/js/main.54327b36.chunk.js"
   ]
 }
