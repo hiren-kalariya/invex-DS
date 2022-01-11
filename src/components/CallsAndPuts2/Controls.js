@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 
 function Controls ({ handleSubmit }) {
   const [date, setDate] = useState(
-    new Date(2021,12,13).toISOString().substring(0, 10)
+    new Date(2021,11,14).toISOString().substring(0, 10)
   )
   const [monthInput, setMonthInput] = useState(100)
   const [strikeInput, setStrikeInput] = useState(20)
