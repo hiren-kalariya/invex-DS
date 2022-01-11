@@ -201,7 +201,6 @@ button.newUser {
    ######################
 */
 .heroSection {
-  background-image: url("../../assets/images/hero_bg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top;
@@ -318,7 +317,6 @@ button.newUser {
 }
 .topfeatureblk:after {
   content: '';
-  background-image: url(../../assets/images/features_bg.png);
   background-repeat: no-repeat;
   height: 100px;
   width: 100px;
@@ -594,7 +592,6 @@ button.newUser {
 }
 .newslettersec .joinCard {
   padding: 2.5rem;
-  background-image: url("../../assets/images/joinnow_bg.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -779,12 +776,10 @@ button.newUser {
 }
 .accordion-button::after {
   content: '';
-  background-image: url(../../assets/images/down-arrow.png);
   background-size: auto;
   background-position: center;
 }
 .accordion-button:not(.collapsed)::after {
-  background-image: url(../../assets/images/down-arrow.png);
   background-size: auto;
   background-position: center;
   transform: rotate(175deg);
@@ -1173,7 +1168,6 @@ small > .circle {
   position: relative;
 }
 .video_res_area {
-  background-image: url(../../assets/images/video-resource.png);
   height: 250px;
   width: 100%;
   background-size: cover;

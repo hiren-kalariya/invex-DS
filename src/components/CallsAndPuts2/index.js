@@ -1,15 +1,6 @@
-import { makeStyles, ThemeProvider } from '@mui/styles'
-
-import { createTheme, responsiveFontSizes } from '@mui/material/styles'
-import React, { useEffect, useState, ReactPortal } from 'react'
+import React, { useState } from 'react'
 import { createPortal } from 'react-dom'
-import { Accordion, useAccordionButton } from 'react-bootstrap'
-import './styles.css'
-import MUIDataTable from 'mui-datatables'
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles'
-import { Slider, Tooltip } from '@mui/material'
-import { Link } from 'react-router-dom'
-import { Box, Modal, Typography } from '@material-ui/core'
+import "./index.css"
 import MainTable from './MainTable'
 import Controls from './Controls'
 import MoreInfo from './MoreInfo'
@@ -22,17 +13,6 @@ const columns = [
   { name: 'hvtf', label: 'HVTF' },
   { name: 'action', label: 'See More' }
 ]
-
-// const data = [
-//   ['Joe James', 'Test Corp', 'Yonkers', 'NY'],
-//   ['John Walsh', 'Test Corp', 'Hartford', 'CT'],
-//   ['Bob Herm', 'Test Corp', 'Tampa', 'FL'],
-//   ['James Houston', 'Test Corp', 'Dallas', 'TX']
-// ]
-
-const options = {
-  filterType: 'none'
-}
 
 function Index () {
   const [companies, setCompanies] = useState([])

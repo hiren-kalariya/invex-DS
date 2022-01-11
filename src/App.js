@@ -1,10 +1,7 @@
 import './App.css'
-import Sectors from './components/Sectors/Sectors'
-import SymbolDetails from './components/SymbolDetails/SymbolDetails'
-import ValuationReport from './components/ValuationReport/ValuationReport'
 import CallsAndPuts2 from './components/CallsAndPuts2/index'
 
-import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import { HashRouter as Router, Routes, Route } from 'react-router-dom'
  
 function App () {
   return (

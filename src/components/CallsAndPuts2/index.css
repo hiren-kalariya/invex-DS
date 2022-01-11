@@ -1,0 +1,26 @@
+.company_details {
+    padding: 50px 0 0;
+}
+
+
+.my_button {
+    background-color: #0F062B;
+    color: white;
+    border: none;
+    outline: none;
+    padding: 8px;
+    border-radius: 4px;
+  }
+
+
+@media only screen and (max-width:767px) {
+    .company_details {
+        padding: 20px 0 0px 0;
+    }
+}
+
+@media only screen and (min-width:768px) and (max-width: 1023px) and (orientation:portrait) {
+    .company_details {
+        padding: 40px 0 30px 0;
+    }
+}

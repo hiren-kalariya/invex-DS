@@ -1,15 +1,16 @@
-import { Box, Slider } from '@mui/material'
+import { Box, Slider, InputLabel, Select, MenuItem } from '@mui/material'
 import React, { useState } from 'react'
 
 function Controls ({ handleSubmit }) {
   const [date, setDate] = useState(
-    new Date().toISOString().substring(0, 10)
+    new Date(2021,12,13).toISOString().substring(0, 10)
   )
   const [monthInput, setMonthInput] = useState(100)
   const [strikeInput, setStrikeInput] = useState(20)
   const [callRange, setCallRange] = useState([0.5, 20])
   const [putRange, setputRange] = useState([0.5, 50])
   const [CPRange, setCPRange] = useState([0.5, 20])
+  const [filterDays, setFilterDays] = useState("180");
 
   const handleExpiration = e => {
     setMonthInput(e.target.value)
@@ -26,11 +27,17 @@ function Controls ({ handleSubmit }) {
   const handleCallRangeChange = value => {
     setCallRange(value)
   }
+  
   const handlePutRangeChange = value => {
     setputRange(value)
   }
+
   const handleCPRangeChange = value => {
     setCPRange(value)
+  }
+
+  const handleFilterDaysChange = e => {
+    setFilterDays(e.target.value);
   }
 
   return (
@@ -176,18 +183,38 @@ function Controls ({ handleSubmit }) {
               </div>
             </div>
           </Box>
+
+          <Box sx={{ width: 150 }} className='mx-2 '>
+            <p className='my-auto mx-2 fw-bolder'>Filter Days</p>
+            {/* <InputLabel id="demo-simple-select-label">Filter Days</InputLabel> */}
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={filterDays}
+              label="Age"
+              onChange={handleFilterDaysChange}
+              sx={{marginTop:1, padding:0}}
+            >
+              <MenuItem value={"180"}>6 Months</MenuItem>
+              <MenuItem value={"720"}>2 Years</MenuItem>
+              <MenuItem value={"max"}>MAX</MenuItem>
+            </Select>
+          </Box>
+
           <button
             className='my_button my-auto w-auto'
             onClick={() => {
-              handleSubmit(`
-      {
-        "month":"${monthInput}",
-        "strike_percent":"${strikeInput}",
-        "date":"${date}",
-        "call_value":"${callRange[0]}_${callRange[1]}",
-        "put_value":"${putRange[0]}_${putRange[1]}",
-        "cp_value":"${CPRange[0]}_${CPRange[1]}"
-    }`)
+              handleSubmit(
+                `{
+                  "month":"${monthInput}",
+                  "strike_percent":"${strikeInput}",
+                  "date":"${date}",
+                  "call_value":"${callRange[0]}_${callRange[1]}",
+                  "put_value":"${putRange[0]}_${putRange[1]}",
+                  "cp_value":"${CPRange[0]}_${CPRange[1]}",
+                  "filter_days":"${filterDays}"
+                }`
+              )
             }}
           >
             Submit
