@@ -46,7 +46,7 @@ function Controls ({ handleSubmit }) {
         className='card flex-wrap d-flex flex-row justify-content-between my-2'
         style={{ overflow: 'auto' }}
       >
-        <div class=' card d-flex flex-row flex-wrap align-items-center justify-content-between w-100 p-4'>
+        <div className=' card d-flex flex-row flex-wrap align-items-center justify-content-between w-100 p-4'>
           <p className='my-auto fw-bolder'>Expiration</p>
           <input
             type='number'
@@ -56,8 +56,8 @@ function Controls ({ handleSubmit }) {
             style={{ width: '100px' }}
           />
           <p className='my-auto mx-2 fw-bolder'>Strike</p>
-          <div class='d-flex flex-column align-items-start p-3'>
-            <label for='myinputRange' class='form-label mx-2 my-0 mt-2'>
+          <div className='d-flex flex-column align-items-start p-3'>
+            <label htmlFor='myinputRange' className='form-label mx-2 my-0 mt-2'>
               {strikeInput}
             </label>
             <Slider
@@ -73,7 +73,7 @@ function Controls ({ handleSubmit }) {
               style={{ width: '100px' }}
             />
           </div>
-          <p className='my-auto mx-2 fw-bolder'>Data Date</p>
+          <p className='my-auto mx-2 fw-bolder'>Date</p>
           <input
             type='date'
             className='mx-2 form-control my-auto w-auto'
@@ -87,11 +87,11 @@ function Controls ({ handleSubmit }) {
         className='flex-wrap d-flex flex-row justify-content-between my-2 card'
         style={{ overflow: 'auto' }}
       >
-        <div class=' card d-flex flex-row flex-wrap align-items-center justify-content-between w-100 p-4'>
+        <div className=' card d-flex flex-row flex-wrap align-items-center justify-content-between w-100 p-4'>
           <Box sx={{ width: 150 }} className='mx-2 '>
             <p className='mx-2 my-auto fw-bolder'>Call Range</p>
-            <div class='d-flex flex-row my-1 justify-content-center'>
-              <div class='d-flex flex-column  mx-1 '>
+            <div className='d-flex flex-row my-1 justify-content-center'>
+              <div className='d-flex flex-column  mx-1 '>
                 <label>From</label>
                 <input
                   type='number'
@@ -104,7 +104,7 @@ function Controls ({ handleSubmit }) {
                   }}
                 />
               </div>
-              <div class='d-flex flex-column  mx-1'>
+              <div className='d-flex flex-column  mx-1'>
                 <label>To</label>
                 <input
                   type='number'
@@ -122,8 +122,8 @@ function Controls ({ handleSubmit }) {
 
           <Box sx={{ width: 150 }} className='mx-2'>
             <p className='my-auto mx-2 fw-bolder'>Put Range</p>
-            <div class='d-flex flex-row my-1'>
-              <div class='d-flex flex-column align-items-start mx-1 '>
+            <div className='d-flex flex-row my-1'>
+              <div className='d-flex flex-column align-items-start mx-1 '>
                 <label>From</label>
                 <input
                   type='number'
@@ -136,7 +136,7 @@ function Controls ({ handleSubmit }) {
                   }}
                 />
               </div>
-              <div class='d-flex flex-column align-items-start mx-1'>
+              <div className='d-flex flex-column align-items-start mx-1'>
                 <label>To</label>
                 <input
                   type='number'
@@ -154,8 +154,8 @@ function Controls ({ handleSubmit }) {
 
           <Box sx={{ width: 150 }} className='mx-2'>
             <p className='my-auto mx-2 fw-bolder'>CP Range</p>
-            <div class='d-flex flex-row my-1'>
-              <div class='d-flex flex-column align-items-start mx-1 '>
+            <div className='d-flex flex-row my-1'>
+              <div className='d-flex flex-column align-items-start mx-1 '>
                 <label>From</label>
                 <input
                   type='number'
@@ -168,7 +168,7 @@ function Controls ({ handleSubmit }) {
                   }}
                 />
               </div>
-              <div class='d-flex flex-column align-items-start mx-1'>
+              <div className='d-flex flex-column align-items-start mx-1'>
                 <label>To</label>
                 <input
                   type='number'
