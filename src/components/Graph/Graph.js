@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { Box, MenuItem, TextField, Select } from '@mui/material'
+import { Box, MenuItem, TextField, Select, useTheme, OutlinedInput, Chip, FormControl, InputLabel } from '@mui/material'
 import axios from 'axios';
 import CustomChart from './CustomChart';
+
+import _without from "lodash/without";
+import CancelIcon from "@material-ui/icons/Cancel";
 
 
 const Graph = () => {
 
+    const theme = useTheme();
+
     const [filterCompanyType, setFilterCompanyType] = useState("lower_data");
-    const [filterCompanyName, setFilterCompanyName] = useState("def");
+
+    const defSelected = "All"
+    const [selectedCompanyName, setSelectedCompanyName] = useState([defSelected]);
     
     const [graphData, setGraphData] = useState({});
     const [companyNameData, setCompanyNameData] = useState([]);
@@ -17,13 +24,32 @@ const Graph = () => {
     const [chartLables, setChartLables] = useState([]);
     const [dataSets, setDataSets] = useState([]);
 
+    const MenuProps = {
+        PaperProps: {
+          style: {
+            maxHeight: 48 * 4.5 + 8,
+            width: 250,
+            fontWeight: "bold"
+          },
+        },
+    };
+
+    function getStyles(name, comName, theme) {
+        return {
+            fontWeight:
+            comName.indexOf(name) === -1
+                ? theme.typography.fontWeightRegular
+                : theme.typography.fontWeightMedium,
+        };
+    }
+
     useEffect(() => {
         axios.get("https://dharm.ga/hello/graph")
         .then(response => {
             const data = response.data;
             
             let localColors = {};
-            Object.keys(data[filterCompanyType].heading).forEach( (lable) => {
+            Object.keys(data["lower_data"].heading).forEach( (lable) => {
                 let r = Math.floor(Math.random()*255);
                 let g = Math.floor(Math.random()*255);
                 let b = Math.floor(Math.random()*255);
@@ -31,9 +57,9 @@ const Graph = () => {
             });
             setColors(localColors);
 
-            setCompanyNameData(Object.keys(data[filterCompanyType].heading));
-            setGraphMidData(data[filterCompanyType].mid);
-            setChartLables(data[filterCompanyType].dates);
+            setCompanyNameData(Object.keys(data["lower_data"].heading));
+            setGraphMidData(data["lower_data"].mid);
+            setChartLables(data["lower_data"].dates);
             setGraphData(data);
         })
         .catch(err => {
@@ -46,7 +72,7 @@ const Graph = () => {
         let lables = companyNameData;
         let n = lables.length;
         let localDataSet = [];
-        if(filterCompanyName==="def"){
+        if(selectedCompanyName.indexOf(defSelected)!==-1){
             for(let i=0; i<n; i++){
                 localDataSet.push({
                     label: lables[i],
@@ -57,20 +83,21 @@ const Graph = () => {
             }
         }
         else {
-            localDataSet.push({
-                label: filterCompanyName,
-                data: graphMidData[filterCompanyName],
-                borderColor: "rgb("+colors[filterCompanyName].r+","+colors[filterCompanyName].g+","+colors[filterCompanyName].b+")",
-                backgroundColor: "rgba(" + colors[filterCompanyName].r + "," + colors[filterCompanyName].g + "," + colors[filterCompanyName].b + ", 0.5)"
-            })
+            selectedCompanyName.forEach( (comName)=>{
+                localDataSet.push({
+                    label: comName,
+                    data: graphMidData[comName],
+                    borderColor: "rgb("+colors[comName].r+","+colors[comName].g+","+colors[comName].b+")",
+                    backgroundColor: "rgba(" + colors[comName].r + "," + colors[comName].g + "," + colors[comName].b + ", 0.5)"
+                })
+            });
         }
         setDataSets(localDataSet);
-    }, [colors, companyNameData, graphMidData, filterCompanyName, filterCompanyType]);
+    }, [colors, companyNameData, graphMidData, selectedCompanyName, filterCompanyType]);
     
-
     const handleDataTypeChange = (e) => {
         setFilterCompanyType(e.target.value);
-        setFilterCompanyName("def");
+        setSelectedCompanyName([defSelected]);
 
         let localColors = {};
         Object.keys(graphData[e.target.value].heading).forEach( (lable) => {
@@ -84,6 +111,20 @@ const Graph = () => {
         setCompanyNameData(Object.keys(graphData[e.target.value].heading));
         setGraphMidData(graphData[e.target.value].mid);
         setChartLables(graphData[e.target.value].dates);
+    }
+
+    const handleNameChange = (e) => {
+        const {
+            target: { value },
+        } = e;
+        setSelectedCompanyName(
+            typeof value === 'string' ? value.split(',') : value,
+        );
+    }
+
+    const handleChipDelete = (e, value) => {
+        e.preventDefault();
+        setSelectedCompanyName((current) => _without(current, value));
     }
 
     return (
@@ -103,23 +144,57 @@ const Graph = () => {
                         </TextField>
                     </Box>
 
-                    <Box sx={{ width: 150 }} className='mx-2 '>
+                    <Box className='mx-2 '>
                         <p className='my-auto mx-2 fw-bolder'>Company Name</p>
-                        <Select
-                            value={filterCompanyName}
-                            onChange={(e) => setFilterCompanyName(e.target.value)}
-                            sx={{marginTop:1, padding:0, width:"100%"}}
-                            MenuProps={{ sx:{maxHeight: 300} }}
-                        >
-                                <MenuItem value={"def"}>-- Select --</MenuItem>
+                        <FormControl sx={{ m: 1, width: 400 }}>
+                            <InputLabel id="company">Company</InputLabel>
+                            <Select
+                                labelId="company"
+                                value={selectedCompanyName}
+                                onChange={handleNameChange}
+                                multiple
+                                input={<OutlinedInput id="company" label="Company" />}
+                                renderValue={(selected) => (
+                                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                                        {selected.map((value) => (
+                                            <Chip 
+                                                key={value} 
+                                                label={value} 
+                                                onDelete={(e) => handleChipDelete(e, value)}
+                                                sx = {{ color:"white", backgroundColor:"#0f062b" }}
+                                                deleteIcon={
+                                                    <CancelIcon
+                                                        style={{fill:"white"}}
+                                                        onMouseDown={(event) => event.stopPropagation()}
+                                                    />
+                                                }
+                                            />
+                                        ))}
+                                    </Box>
+                                )}
+                                MenuProps={MenuProps}
+                            >
+                                <MenuItem
+                                    value={ defSelected }
+                                    style={getStyles(defSelected, selectedCompanyName, theme)}
+                                >
+                                    { defSelected }
+                                </MenuItem>
                                 {
-                                    companyNameData.map(data => {
+                                    companyNameData.map(name => {
                                         return (
-                                            <MenuItem key={data} value={data}>{data}</MenuItem>
+                                            <MenuItem
+                                                key={name}
+                                                value={name}
+                                                style={getStyles(name, selectedCompanyName, theme)}
+                                            >
+                                                {name}
+                                            </MenuItem>
                                         )
                                     })
                                 }
-                        </Select>
+                            </Select>
+                        </FormControl>
                     </Box>
 
                     {/* <button

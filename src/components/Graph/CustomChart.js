@@ -35,13 +35,18 @@ const CustomChart = ({chartLables, dataSets}) => {
       },
     },
     scales: {
+      y: {
+        gridlines: {
+          color: 'red'
+        },
+      },
       x: {
-          ticks: {
-              autoSkip: false,
-              maxRotation: 90,
-              minRotation: 0
-          }
-      }
+        ticks: {
+            autoSkip: false,
+            maxRotation: 90,
+            minRotation: 0
+        }
+      },
     }
   };
 

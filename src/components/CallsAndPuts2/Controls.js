@@ -1,4 +1,4 @@
-import { Box, Slider, InputLabel, Select, MenuItem } from '@mui/material'
+import { Box, Slider, Select, MenuItem } from '@mui/material'
 import React, { useState } from 'react'
 
 function Controls ({ handleSubmit }) {
