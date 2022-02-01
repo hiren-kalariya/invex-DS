@@ -77,6 +77,11 @@ const InvexAppBar = () => {
                   <Typography textAlign="center">Graph</Typography>
                 </MenuItem>
               </Link>
+              <Link to="/comp-graph">
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">Compare Graph</Typography>
+                </MenuItem>
+              </Link>
             </Menu>
           </Box>
           <Typography
@@ -102,6 +107,14 @@ const InvexAppBar = () => {
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 Graph
+              </Button>
+            </Link>
+            <Link to="/comp-graph">
+              <Button
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                Compare Graph
               </Button>
             </Link>
           </Box>

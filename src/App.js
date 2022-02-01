@@ -4,6 +4,7 @@ import InvexAppBar from './components/InvexAppBar/InvexAppBar'
 
 import { HashRouter as Router, Routes, Route } from 'react-router-dom'
 import Graph from './components/Graph/Graph'
+import TableGraph from './components/TableGraph/TableGraph'
  
 function App () {
   return (
@@ -12,7 +13,8 @@ function App () {
         <InvexAppBar />
         <Routes>
           <Route exact path='/' element={<CallsAndPuts2 />} />
-          <Route path="/graph" element={<Graph />} />
+          <Route path="/graph" element={<TableGraph />} />
+          <Route path="/comp-graph" element={<Graph />} />
         </Routes>
       </div>
     </Router>

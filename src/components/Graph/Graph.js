@@ -11,14 +11,14 @@ const Graph = () => {
 
     const theme = useTheme();
 
-    const [filterCompanyType, setFilterCompanyType] = useState("lower_data");
+    const [filterCompanyType, setFilterCompanyType] = useState("sell");
 
     const defSelected = "All"
     const [selectedCompanyName, setSelectedCompanyName] = useState([defSelected]);
     
     const [graphData, setGraphData] = useState({});
     const [companyNameData, setCompanyNameData] = useState([]);
-    const [graphMidData, setGraphMidData] = useState({});
+    // const [graphMidData, setGraphMidData] = useState({});
     const [colors, setColors] = useState([]);
     
     const [chartLables, setChartLables] = useState([]);
@@ -47,9 +47,10 @@ const Graph = () => {
         axios.get("https://dharm.ga/hello/graph")
         .then(response => {
             const data = response.data;
+            const localCompName = Object.keys(data["sell"]);
             
             let localColors = {};
-            Object.keys(data["lower_data"].heading).forEach( (lable) => {
+            localCompName.forEach( (lable) => {
                 let r = Math.floor(Math.random()*255);
                 let g = Math.floor(Math.random()*255);
                 let b = Math.floor(Math.random()*255);
@@ -57,9 +58,8 @@ const Graph = () => {
             });
             setColors(localColors);
 
-            setCompanyNameData(Object.keys(data["lower_data"].heading));
-            setGraphMidData(data["lower_data"].mid);
-            setChartLables(data["lower_data"].dates);
+            setCompanyNameData(localCompName);
+            setChartLables(data["sell"][localCompName[0]].expiration);
             setGraphData(data);
         })
         .catch(err => {
@@ -72,35 +72,40 @@ const Graph = () => {
         let lables = companyNameData;
         let n = lables.length;
         let localDataSet = [];
-        if(selectedCompanyName.indexOf(defSelected)!==-1){
-            for(let i=0; i<n; i++){
-                localDataSet.push({
-                    label: lables[i],
-                    data: graphMidData[lables[i]],
-                    borderColor: "rgb("+colors[lables[i]].r+","+colors[lables[i]].g+","+colors[lables[i]].b+")",
-                    backgroundColor: "rgba(" + colors[lables[i]].r + "," + colors[lables[i]].g + "," + colors[lables[i]].b + ", 0.5)"
-                })
+        if(graphData.sell){
+            if(selectedCompanyName.indexOf(defSelected)!==-1){
+                for(let i=0; i<n; i++){
+                    localDataSet.push({
+                        label: lables[i],
+                        data: graphData[filterCompanyType][lables[i]].mid,
+                        borderColor: "rgb("+colors[lables[i]].r+","+colors[lables[i]].g+","+colors[lables[i]].b+")",
+                        backgroundColor: "rgba(" + colors[lables[i]].r + "," + colors[lables[i]].g + "," + colors[lables[i]].b + ", 0.5)"
+                    })
+                }
+            }
+            else {
+                selectedCompanyName.forEach( (comName)=>{
+                    localDataSet.push({
+                        label: comName,
+                        data: graphData[filterCompanyType][comName].mid,
+                        borderColor: "rgb("+colors[comName].r+","+colors[comName].g+","+colors[comName].b+")",
+                        backgroundColor: "rgba(" + colors[comName].r + "," + colors[comName].g + "," + colors[comName].b + ", 0.5)"
+                    })
+                });
             }
         }
-        else {
-            selectedCompanyName.forEach( (comName)=>{
-                localDataSet.push({
-                    label: comName,
-                    data: graphMidData[comName],
-                    borderColor: "rgb("+colors[comName].r+","+colors[comName].g+","+colors[comName].b+")",
-                    backgroundColor: "rgba(" + colors[comName].r + "," + colors[comName].g + "," + colors[comName].b + ", 0.5)"
-                })
-            });
-        }
         setDataSets(localDataSet);
-    }, [colors, companyNameData, graphMidData, selectedCompanyName, filterCompanyType]);
+    }, [colors, companyNameData, graphData, selectedCompanyName, filterCompanyType]);
     
     const handleDataTypeChange = (e) => {
-        setFilterCompanyType(e.target.value);
+        const newValue = e.target.value;
+        let localCompName = Object.keys(graphData[newValue]);
+
+        setFilterCompanyType(newValue);
         setSelectedCompanyName([defSelected]);
 
         let localColors = {};
-        Object.keys(graphData[e.target.value].heading).forEach( (lable) => {
+        localCompName.forEach( (lable) => {
             let r = Math.floor(Math.random()*255);
             let g = Math.floor(Math.random()*255);
             let b = Math.floor(Math.random()*255);
@@ -108,9 +113,8 @@ const Graph = () => {
         });
         setColors(localColors);
 
-        setCompanyNameData(Object.keys(graphData[e.target.value].heading));
-        setGraphMidData(graphData[e.target.value].mid);
-        setChartLables(graphData[e.target.value].dates);
+        setCompanyNameData(localCompName);
+        setChartLables(graphData[newValue][localCompName[0]].expiration);
     }
 
     const handleNameChange = (e) => {
@@ -139,14 +143,14 @@ const Graph = () => {
                             select
                             sx={{marginTop:1, padding:0, width:"100%"}}
                         >
-                                <MenuItem value="lower_data">Lower Data</MenuItem>
-                                <MenuItem value="upper_data">Upper Data</MenuItem>
+                                <MenuItem value="sell">Sell</MenuItem>
+                                <MenuItem value="buy">Buy</MenuItem>
                         </TextField>
                     </Box>
 
                     <Box className='mx-2 '>
                         <p className='my-auto mx-2 fw-bolder'>Company Name</p>
-                        <FormControl sx={{ m: 1, width: 400 }}>
+                        <FormControl sx={{ m: 1, width: 500 }}>
                             <InputLabel id="company">Company</InputLabel>
                             <Select
                                 labelId="company"
