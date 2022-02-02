@@ -3,7 +3,7 @@ import { ThemeProvider } from '@mui/styles'
 import axios from 'axios';
 import MUIDataTable from 'mui-datatables';
 import React, { useEffect, useState } from 'react';
-import CustomChart from '../Graph/CustomChart';
+import CustomChartMAxis from '../Graph/CustomChartMAxis';
 
 const TableGraph = () => {
 
@@ -64,7 +64,12 @@ const TableGraph = () => {
                 let r = Math.floor(Math.random()*255);
                 let g = Math.floor(Math.random()*255);
                 let b = Math.floor(Math.random()*255);
-                localColors[lable] = {r,g,b}
+
+                let r1 = Math.floor(Math.random()*255);
+                let g1 = Math.floor(Math.random()*255);
+                let b1 = Math.floor(Math.random()*255);
+
+                localColors[lable] = {r,g,b,r1,g1,b1}
             });
 
             const localData = [];
@@ -82,11 +87,19 @@ const TableGraph = () => {
                                 setShowChart(true);
                                 setChartLables(data[filterCompanyType][name].expiration);
                                 setDataSets([
-                                {
+                                    {
                                         label: name,
                                         data: data[filterCompanyType][name].mid,
                                         borderColor: "rgb("+localColors[name].r+","+localColors[name].g+","+localColors[name].b+")",
-                                        backgroundColor: "rgba(" + localColors[name].r + "," + localColors[name].g + "," + localColors[name].b + ", 0.5)"
+                                        backgroundColor: "rgba(" + localColors[name].r + "," + localColors[name].g + "," + localColors[name].b + ", 0.5)",
+                                        yAxisID: 'y'
+                                    },
+                                    {
+                                        label: name + " Change %",
+                                        data: data[filterCompanyType][name].mid_change,
+                                        borderColor: "rgb("+localColors[name].r1+","+localColors[name].g1+","+localColors[name].b1+")",
+                                        backgroundColor: "rgba(" + localColors[name].r1 + "," + localColors[name].g1 + "," + localColors[name].b1 + ", 0.5)",
+                                        yAxisID: 'y1'
                                     }
                                 ]);
                             }}
@@ -117,7 +130,12 @@ const TableGraph = () => {
             let r = Math.floor(Math.random()*255);
             let g = Math.floor(Math.random()*255);
             let b = Math.floor(Math.random()*255);
-            localColors[lable] = {r,g,b}
+            
+            let r1 = Math.floor(Math.random()*255);
+            let g1 = Math.floor(Math.random()*255);
+            let b1 = Math.floor(Math.random()*255);
+
+            localColors[lable] = {r,g,b,r1,g1,b1}
         });
 
         const localData = [];
@@ -135,11 +153,19 @@ const TableGraph = () => {
                             setShowChart(true);
                             setChartLables(graphData[newValue][name].expiration);
                             setDataSets([
-                            {
+                                {
                                     label: name,
                                     data: graphData[newValue][name].mid,
                                     borderColor: "rgb("+localColors[name].r+","+localColors[name].g+","+localColors[name].b+")",
-                                    backgroundColor: "rgba(" + localColors[name].r + "," + localColors[name].g + "," + localColors[name].b + ", 0.5)"
+                                    backgroundColor: "rgba(" + localColors[name].r + "," + localColors[name].g + "," + localColors[name].b + ", 0.5)",
+                                    yAxisID: 'y'
+                                },
+                                {
+                                    label: name + " Change %",
+                                    data: graphData[newValue][name].mid_change,
+                                    borderColor: "rgb("+localColors[name].r1+","+localColors[name].g1+","+localColors[name].b1+")",
+                                    backgroundColor: "rgba(" + localColors[name].r1 + "," + localColors[name].g1 + "," + localColors[name].b1 + ", 0.5)",
+                                    yAxisID: 'y1'
                                 }
                             ]);
                         }}
@@ -196,7 +222,7 @@ const TableGraph = () => {
                         <i className='fas fa-times' onClick={handleCloseModal}></i>
                     </div>
 
-                        <CustomChart 
+                        <CustomChartMAxis
                             chartLables={chartLables} 
                             dataSets={dataSets}
                         />
@@ -219,9 +245,6 @@ const TableGraph = () => {
                }}
             >
                <Box sx={{padding:1, background:"transparent", display:"flex"}}>
-                  {/* <Typography gutterBottom variant="h5" component="div" sx={{color:"white"}}>
-                        Approving...
-                  </Typography> */}
                   <CircularProgress sx={{color:"white", margin:"0 auto "}} /> 
                </Box>     
             </Dialog>

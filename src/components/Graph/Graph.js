@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Box, MenuItem, TextField, Select, useTheme, OutlinedInput, Chip, FormControl, InputLabel } from '@mui/material'
 import axios from 'axios';
-import CustomChart from './CustomChart';
+import CustomChart from './CustomChart.js';
 
 import _without from "lodash/without";
 import CancelIcon from "@material-ui/icons/Cancel";
@@ -23,6 +23,7 @@ const Graph = () => {
     
     const [chartLables, setChartLables] = useState([]);
     const [dataSets, setDataSets] = useState([]);
+    const [dataSetsChange, setDataSetsChange] = useState([]);
 
     const MenuProps = {
         PaperProps: {
@@ -72,6 +73,7 @@ const Graph = () => {
         let lables = companyNameData;
         let n = lables.length;
         let localDataSet = [];
+        let localDataSetChange = [];
         if(graphData.sell){
             if(selectedCompanyName.indexOf(defSelected)!==-1){
                 for(let i=0; i<n; i++){
@@ -80,7 +82,13 @@ const Graph = () => {
                         data: graphData[filterCompanyType][lables[i]].mid,
                         borderColor: "rgb("+colors[lables[i]].r+","+colors[lables[i]].g+","+colors[lables[i]].b+")",
                         backgroundColor: "rgba(" + colors[lables[i]].r + "," + colors[lables[i]].g + "," + colors[lables[i]].b + ", 0.5)"
-                    })
+                    });
+                    localDataSetChange.push({
+                        label: lables[i]+" Change %",
+                        data: graphData[filterCompanyType][lables[i]].mid_change,
+                        borderColor: "rgb("+colors[lables[i]].r+","+colors[lables[i]].g+","+colors[lables[i]].b+")",
+                        backgroundColor: "rgba(" + colors[lables[i]].r + "," + colors[lables[i]].g + "," + colors[lables[i]].b + ", 0.5)"
+                    });
                 }
             }
             else {
@@ -90,11 +98,18 @@ const Graph = () => {
                         data: graphData[filterCompanyType][comName].mid,
                         borderColor: "rgb("+colors[comName].r+","+colors[comName].g+","+colors[comName].b+")",
                         backgroundColor: "rgba(" + colors[comName].r + "," + colors[comName].g + "," + colors[comName].b + ", 0.5)"
-                    })
+                    });
+                    localDataSetChange.push({
+                        label: comName+" Change %",
+                        data: graphData[filterCompanyType][comName].mid_change,
+                        borderColor: "rgb("+colors[comName].r+","+colors[comName].g+","+colors[comName].b+")",
+                        backgroundColor: "rgba(" + colors[comName].r + "," + colors[comName].g + "," + colors[comName].b + ", 0.5)"
+                    });
                 });
             }
         }
         setDataSets(localDataSet);
+        setDataSetsChange(localDataSetChange)
     }, [colors, companyNameData, graphData, selectedCompanyName, filterCompanyType]);
     
     const handleDataTypeChange = (e) => {
@@ -209,7 +224,8 @@ const Graph = () => {
                     </button> */}
                 </div>
             </div>
-            <CustomChart chartLables={chartLables} dataSets={dataSets} />
+            <CustomChart title="Invex Chart" chartLables={chartLables} dataSets={dataSets} />
+            <CustomChart title="Invex Chart Change %" chartLables={chartLables} dataSets={dataSetsChange} />
         </div>
     );
 };

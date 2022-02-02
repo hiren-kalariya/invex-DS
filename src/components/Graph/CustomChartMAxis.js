@@ -21,32 +21,46 @@ ChartJS.register(
   Legend
 );
 
-const CustomChart = ({title, chartLables, dataSets}) => {
+const CustomChartMAxis = ({chartLables, dataSets}) => {
 
   const options = {
     responsive: true,
+    interaction: {
+        mode: 'index',
+        intersect: false,
+    },
+    stacked: false,
     plugins: {
       legend: {
         position: 'top',
       },
       title: {
         display: true,
-        text: title,
+        text: 'Invex Chart',
       },
     },
     scales: {
-      y: {
-        gridlines: {
-          color: 'red'
+        y: {
+            type: 'linear',
+            display: true,
+            position: 'left',
         },
-      },
-      x: {
-        ticks: {
-            autoSkip: false,
-            maxRotation: 90,
-            minRotation: 0
-        }
-      },
+        y1: {
+            type: 'linear',
+            display: true,
+            position: 'right',
+
+            grid: {
+                drawOnChartArea: false,
+            },
+        },
+        x: {
+            ticks: {
+                autoSkip: false,
+                maxRotation: 90,
+                minRotation: 0
+            }
+        },
     }
   };
 
@@ -65,4 +79,4 @@ const CustomChart = ({title, chartLables, dataSets}) => {
   );
 };
 
-export default CustomChart;
+export default CustomChartMAxis;
