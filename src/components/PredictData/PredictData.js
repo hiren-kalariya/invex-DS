@@ -41,7 +41,7 @@ const PredictData = () => {
         else{
             setOpenBackDrop(true);
             axios.post(
-                "https://dharm.ga/hello/predict_price", 
+                process.env.REACT_APP_BASE_URL+"/predict_price", 
                 {
                     "ticker": ticker,
                     "filter_days": filterDays,

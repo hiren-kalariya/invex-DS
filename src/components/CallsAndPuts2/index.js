@@ -43,7 +43,7 @@ function Index () {
       setLoading(true)
       setDataLoaded(true)
 
-      const res = await fetch(`https://dharm.ga/hello/total`, {
+      const res = await fetch(process.env.REACT_APP_BASE_URL+`/total`, {
         method: 'POST',
         body: body,
 

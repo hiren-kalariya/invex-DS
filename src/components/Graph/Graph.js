@@ -45,7 +45,7 @@ const Graph = () => {
     }
 
     useEffect(() => {
-        axios.get("https://dharm.ga/hello/graph")
+        axios.get(process.env.REACT_APP_BASE_URL+"/graph")
         .then(response => {
             const data = response.data;
             const localCompName = Object.keys(data["sell"]);
