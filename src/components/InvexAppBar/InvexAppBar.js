@@ -117,6 +117,14 @@ const InvexAppBar = () => {
                 Compare Graph
               </Button>
             </Link>
+            <Link to="/predict-data">
+              <Button
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                Predict Data
+              </Button>
+            </Link>
           </Box>
 
           {/* <Box sx={{ flexGrow: 0 }}>

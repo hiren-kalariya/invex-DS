@@ -58,6 +58,7 @@ const TableGraph = () => {
         axios.get("https://dharm.ga/hello/graph")
         .then(response => {
             const data = response.data;
+            console.log(data);
             
             let localColors = {};
             Object.keys(data["sell"]).forEach( (lable) => {

@@ -5,6 +5,7 @@ import InvexAppBar from './components/InvexAppBar/InvexAppBar'
 import { HashRouter as Router, Routes, Route } from 'react-router-dom'
 import Graph from './components/Graph/Graph'
 import TableGraph from './components/TableGraph/TableGraph'
+import PredictData from './components/PredictData/PredictData'
  
 function App () {
   return (
@@ -15,6 +16,7 @@ function App () {
           <Route exact path='/' element={<CallsAndPuts2 />} />
           <Route path="/graph" element={<TableGraph />} />
           <Route path="/comp-graph" element={<Graph />} />
+          <Route path="/predict-data" element={<PredictData />} />
         </Routes>
       </div>
     </Router>
