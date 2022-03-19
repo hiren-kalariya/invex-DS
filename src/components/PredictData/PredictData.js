@@ -1,16 +1,21 @@
 import React, { useState } from 'react'
 import { 
+        Autocomplete,
         Box, MenuItem, 
         ButtonGroup, Select, 
         InputAdornment, OutlinedInput, 
         Button, FormControl,
         Snackbar, Alert, Grow,
         List, ListItem, ListItemText,
-        Divider, Typography,
+        Divider, TextField,
         Backdrop, CircularProgress,
         TableContainer, Table, TableHead,
         TableRow, TableCell, TableBody
-} from '@mui/material'
+} from '@mui/material';
+
+import tickerData from "./TickerData";
+
+import { makeStyles } from '@mui/styles';
 
 import axios from "axios";
 const PredictData = () => {
@@ -28,6 +33,19 @@ const PredictData = () => {
 
     const [timePeriod, setTimePeriod] = useState("5");
 
+    
+    const useStyles = makeStyles({
+        text: {
+          fontWeight: "bold",
+        },
+        specialCell: {
+            backgroundColor: "#0F062B",
+            color: "white"
+        }
+    });
+
+    const classes = useStyles();
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if(ticker===""){
@@ -39,6 +57,7 @@ const PredictData = () => {
             setOpen(true);
         }
         else{
+            console.log(ticker);
             setOpenBackDrop(true);
             axios.post(
                 process.env.REACT_APP_BASE_URL+"/predict_price", 
@@ -95,11 +114,26 @@ const PredictData = () => {
                             className='mx-2 form-control my-auto '
                         /> */}
                         
-                        <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-                            <OutlinedInput
-                                value={ticker}
-                                onChange={(e) => setTicker(e.target.value)}
+                        <FormControl sx={{ width: '25ch' }} variant="outlined">
+                            <Autocomplete 
+                                options={tickerData}
+                                // inputValue={ticker}
+                                onChange={(event, value) => setTicker(value)}
+                                renderInput={params => (
+                                    <TextField
+                                        {...params}
+                                        label="Ticker"
+                                        margin="normal"
+                                        fullWidth
+                                    />
+                                )}
                             />
+                            {/* <Autocomplete
+                                disablePortal
+                                id="combo-box-demo"
+                                options={tickerData}
+                                renderInput={(params) => <TextField {...params} onClick={e => console.log(e)} label="Ticker" />}
+                            /> */}
                         </FormControl>
                     </Box>
                     <Box className='my-2 mx-2 '>
@@ -108,7 +142,7 @@ const PredictData = () => {
                             value={filterDays}
                             label="Age"
                             onChange={(e) => setFilterDays(e.target.value)}
-                            sx={{marginTop:1, marginLeft:1, padding:0}}
+                            sx={{marginTop:2, marginLeft:1, padding:0}}
                         >
                             <MenuItem value={180}>6 Months</MenuItem>
                             <MenuItem value={360}>1 Years</MenuItem>
@@ -118,24 +152,6 @@ const PredictData = () => {
                     </Box>
                     <Box className='my-2 mx-2 '>
                         <p className='mb-1 my-auto mx-2 fw-bolder'>Percentage</p>
-                        {/* <input
-                            type='number'
-                            min={0}
-                            max={100}
-                            value={percentage}
-                            onChange={(e) => setPercentage(e.target.value)}
-                            className='mx-2 form-control my-auto '
-                        /> */}
-                        {/* <TextField 
-                            type="number"
-                            InputProps={{
-                                inputProps: { 
-                                    max: 100, min: 10 
-                                }
-                            }}
-                            fullWidth
-                            size="small"
-                        /> */}
                         <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
                             <OutlinedInput
                                 type="number"
@@ -154,40 +170,39 @@ const PredictData = () => {
                         Submit
                     </button>
                 </div>
-                <div style={{justifyContent:"space-around"}} className=' card d-flex flex-row flex-wrap align-items-center w-100 p-4 mt-4 mb-2'>
-                    <ButtonGroup orientation="vertical" color="inherit" disableRipple sx={{ color:"#0F062B", borderColor:"#0F062B" }} >
-                        <Button 
-                            sx={timePeriod==="5"?selected:unSelected} 
-                            onClick={() => setTimePeriod("5")}
-                        >
-                            Weekly
-                        </Button>
-                        <Button 
-                            sx={timePeriod==="10"?selected:unSelected}  
-                            onClick={() => setTimePeriod("10")}
-                        >
-                            Semi-Monthly
-                        </Button>
-                        <Button 
-                            sx={timePeriod==="20"?selected:unSelected}  
-                            onClick={() => setTimePeriod("20")}
-                        >
-                            Monthly
-                        </Button>
-                        <Button 
-                            sx={timePeriod==="60"?selected:unSelected}  
-                            onClick={() => setTimePeriod("60")}
-                        >
-                            Quaterly
-                        </Button>
-                    </ButtonGroup>
-
-                    {
-                        dataLoaded
-                        ?   <List
+                {
+                    dataLoaded
+                    ?   <div style={{justifyContent:"space-around"}} className=' card d-flex flex-column flex-wrap align-items-center w-100 p-4 mt-4 mb-2'>
+                            <ButtonGroup orientation="vertical" color="inherit" disableRipple sx={{ color:"#0F062B", borderColor:"#0F062B" }} >
+                                <Button 
+                                    sx={timePeriod==="5"?selected:unSelected} 
+                                    onClick={() => setTimePeriod("5")}
+                                >
+                                    Weekly
+                                </Button>
+                                <Button 
+                                    sx={timePeriod==="10"?selected:unSelected}  
+                                    onClick={() => setTimePeriod("10")}
+                                >
+                                    Semi-Monthly
+                                </Button>
+                                <Button 
+                                    sx={timePeriod==="20"?selected:unSelected}  
+                                    onClick={() => setTimePeriod("20")}
+                                >
+                                    Monthly
+                                </Button>
+                                <Button 
+                                    sx={timePeriod==="60"?selected:unSelected}  
+                                    onClick={() => setTimePeriod("60")}
+                                >
+                                    Quaterly
+                                </Button>
+                            </ButtonGroup>
+                            <List
                                 sx={{
                                     width: '100%',
-                                    maxWidth: 650,
+                                    maxWidth: "fitContent",
                                     bgcolor: 'background.paper',
                                     border: "1px solid #0F062B",
                                     borderRadius: "5px",
@@ -198,14 +213,16 @@ const PredictData = () => {
                                     <ListItemText 
                                         primary="O to H Volatility" 
                                         secondary={ changeFloat(predictData[timePeriod]["O to H"]) + "%"} 
+                                        classes={{ primary: classes.text }}
                                     />
                                     <Divider orientation="vertical" variant="middle" flexItem />
                                     <ListItemText 
                                         primary="O to L Volatility" 
                                         secondary={ changeFloat(predictData[timePeriod]["O to L"]) + "%"} 
+                                        classes={{ primary: classes.text }}
                                     />
                                 </ListItem>
-                                <Divider />
+                                {/* <Divider />
                                 <ListItem>
                                     <ListItemText 
                                         primary="Predicted High" 
@@ -213,7 +230,46 @@ const PredictData = () => {
                                     <ListItemText 
                                         primary="Predicted Low" 
                                         secondary={changeFloat(predictData[timePeriod]["predicted_low"])} />
-                                </ListItem>
+                                </ListItem> */}
+
+                                <Divider />
+
+                                <div style={{flex: "1 1 auto", margin:"2em"}}>
+                                    <Table>
+                                        <TableHead>
+                                            <TableRow>
+                                                <TableCell align="center" ></TableCell>
+                                                {
+                                                    predictData[timePeriod]["percentage"].map((data, index) => {
+                                                        return(
+                                                            <TableCell className={index===0?classes.specialCell:""} align="center"> 
+                                                                <b>{data}%</b> 
+                                                            </TableCell>
+                                                        )
+                                                    })
+                                                }
+                                            </TableRow>
+                                        </TableHead>
+                                        <TableBody>
+                                            <TableRow>
+                                                <TableCell align="center"> <b>Predicted High</b> </TableCell>
+                                                {
+                                                    predictData[timePeriod]["predicted_high"].map((data, index) => {
+                                                        return(<TableCell className={index===0?classes.specialCell:""} align="center"> {changeFloat(data)} </TableCell>)
+                                                    })
+                                                }
+                                            </TableRow>
+                                            <TableRow>
+                                                <TableCell align="center"> <b>Predicted Low</b> </TableCell>
+                                                {
+                                                    predictData[timePeriod]["predicted_low"].map((data, index) => {
+                                                        return(<TableCell className={index===0?classes.specialCell:""} align="center"> {changeFloat(data)} </TableCell>)
+                                                    })
+                                                }
+                                            </TableRow>
+                                        </TableBody>
+                                    </Table>
+                                </div>
 
                                 <Divider />
                                 
@@ -222,7 +278,7 @@ const PredictData = () => {
                                         <Table>
                                             <TableHead>
                                                 <TableRow>
-                                                    <TableCell align="center" colSpan={2}> 1st SD </TableCell>
+                                                    <TableCell align="center" colSpan={2}> <b>1st SD</b> </TableCell>
                                                 </TableRow>
                                             </TableHead>
                                             <TableBody>
@@ -241,7 +297,7 @@ const PredictData = () => {
                                         <Table>
                                             <TableHead>
                                                 <TableRow>
-                                                    <TableCell align="center" colSpan={2}> 2nd SD </TableCell>
+                                                    <TableCell align="center" colSpan={2}> <b>2nd SD</b> </TableCell>
                                                 </TableRow>
                                             </TableHead>
                                             <TableBody>
@@ -260,7 +316,7 @@ const PredictData = () => {
                                         <Table>
                                             <TableHead>
                                                 <TableRow>
-                                                    <TableCell align="center" colSpan={2}> 3rd SD </TableCell>
+                                                    <TableCell align="center" colSpan={2}> <b>3rd SD</b> </TableCell>
                                                 </TableRow>
                                             </TableHead>
                                             <TableBody>
@@ -277,9 +333,9 @@ const PredictData = () => {
                                     </div>
                                 </ListItem>
                             </List>
-                        :   <div></div>
-                    }
-                </div>
+                        </div>
+                    :<></>
+                }
             </div>
 
             <Backdrop
