@@ -173,7 +173,7 @@ const PredictData = () => {
                 {
                     dataLoaded
                     ?   <div style={{justifyContent:"space-around"}} className=' card d-flex flex-column flex-wrap align-items-center w-100 p-4 mt-4 mb-2'>
-                            <ButtonGroup orientation="vertical" color="inherit" disableRipple sx={{ color:"#0F062B", borderColor:"#0F062B" }} >
+                            <ButtonGroup color="inherit" disableRipple sx={{ color:"#0F062B", borderColor:"#0F062B" }} >
                                 <Button 
                                     sx={timePeriod==="5"?selected:unSelected} 
                                     onClick={() => setTimePeriod("5")}
