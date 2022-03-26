@@ -234,7 +234,7 @@ const PredictData = () => {
 
                                 <Divider />
 
-                                <div style={{flex: "1 1 auto", margin:"2em"}}>
+                                <div style={{flex: "1 1 auto", margin:"2em",overflowX: "scroll"}}>
                                     <Table>
                                         <TableHead>
                                             <TableRow>
@@ -255,7 +255,8 @@ const PredictData = () => {
                                                 <TableCell align="center"> <b>Predicted High</b> </TableCell>
                                                 {
                                                     predictData[timePeriod]["predicted_high"].map((data, index) => {
-                                                        return(<TableCell className={index===0?classes.specialCell:""} align="center"> {changeFloat(data)} </TableCell>)
+                                                        console.log(data)
+                                                        return(<TableCell className={index===0?classes.specialCell:""} align="center"> $ {changeFloat(data)} <div style={{fontSize: "10px"}}>( {changeFloat(predictData[timePeriod]["OtoHpercent"][index])}% ) </div> </TableCell>)
                                                     })
                                                 }
                                             </TableRow>
@@ -263,7 +264,7 @@ const PredictData = () => {
                                                 <TableCell align="center"> <b>Predicted Low</b> </TableCell>
                                                 {
                                                     predictData[timePeriod]["predicted_low"].map((data, index) => {
-                                                        return(<TableCell className={index===0?classes.specialCell:""} align="center"> {changeFloat(data)} </TableCell>)
+                                                        return(<TableCell className={index===0?classes.specialCell:""} align="center"> $ {changeFloat(data)} <div style={{fontSize: "10px"}}> ( {changeFloat(predictData[timePeriod]["OtoLpercent"][index])}% )</div> </TableCell>)
                                                     })
                                                 }
                                             </TableRow>
@@ -284,11 +285,11 @@ const PredictData = () => {
                                             <TableBody>
                                                 <TableRow>
                                                     <TableCell align="center"> {changeFloat(predictData[timePeriod]["first_percent"][0])}% </TableCell>
-                                                    <TableCell align="center"> {changeFloat(predictData[timePeriod]["first"][0])} </TableCell>
+                                                    <TableCell align="center"> $ {changeFloat(predictData[timePeriod]["first"][0])} </TableCell>
                                                 </TableRow>
                                                 <TableRow>
                                                     <TableCell align="center"> {changeFloat(predictData[timePeriod]["first_percent"][1])}% </TableCell>
-                                                    <TableCell align="center"> {changeFloat(predictData[timePeriod]["first"][1])} </TableCell>
+                                                    <TableCell align="center"> $ {changeFloat(predictData[timePeriod]["first"][1])} </TableCell>
                                                 </TableRow>
                                             </TableBody>
                                         </Table>
@@ -303,11 +304,11 @@ const PredictData = () => {
                                             <TableBody>
                                                 <TableRow>
                                                     <TableCell align="center"> {changeFloat(predictData[timePeriod]["second_percent"][0])}% </TableCell>
-                                                    <TableCell align="center"> {changeFloat(predictData[timePeriod]["second"][0])} </TableCell>
+                                                    <TableCell align="center"> $ {changeFloat(predictData[timePeriod]["second"][0])} </TableCell>
                                                 </TableRow>
                                                 <TableRow>
                                                     <TableCell align="center"> {changeFloat(predictData[timePeriod]["second_percent"][1])}% </TableCell>
-                                                    <TableCell align="center"> {changeFloat(predictData[timePeriod]["second"][1])} </TableCell>
+                                                    <TableCell align="center"> $ {changeFloat(predictData[timePeriod]["second"][1])} </TableCell>
                                                 </TableRow>
                                             </TableBody>
                                         </Table>
@@ -322,11 +323,11 @@ const PredictData = () => {
                                             <TableBody>
                                                 <TableRow>
                                                     <TableCell align="center"> {changeFloat(predictData[timePeriod]["third_percent"][0])}% </TableCell>
-                                                    <TableCell align="center"> {changeFloat(predictData[timePeriod]["third"][0])} </TableCell>
+                                                    <TableCell align="center"> $ {changeFloat(predictData[timePeriod]["third"][0])} </TableCell>
                                                 </TableRow>
                                                 <TableRow>
                                                     <TableCell align="center"> {changeFloat(predictData[timePeriod]["third_percent"][1])}% </TableCell>
-                                                    <TableCell align="center"> {changeFloat(predictData[timePeriod]["third"][1])} </TableCell>
+                                                    <TableCell align="center"> $ {changeFloat(predictData[timePeriod]["third"][1])} </TableCell>
                                                 </TableRow>
                                             </TableBody>
                                         </Table>
