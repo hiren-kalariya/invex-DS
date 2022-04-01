@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/invex-DS/static/css/main.30ca3b82.chunk.css",
-    "main.js": "/invex-DS/static/js/main.e7fde124.chunk.js",
-    "main.js.map": "/invex-DS/static/js/main.e7fde124.chunk.js.map",
+    "main.js": "/invex-DS/static/js/main.6a2ea6c4.chunk.js",
+    "main.js.map": "/invex-DS/static/js/main.6a2ea6c4.chunk.js.map",
     "runtime-main.js": "/invex-DS/static/js/runtime-main.e80177fe.js",
     "runtime-main.js.map": "/invex-DS/static/js/runtime-main.e80177fe.js.map",
-    "static/js/2.af3fd2a7.chunk.js": "/invex-DS/static/js/2.af3fd2a7.chunk.js",
-    "static/js/2.af3fd2a7.chunk.js.map": "/invex-DS/static/js/2.af3fd2a7.chunk.js.map",
+    "static/js/2.5c57cc26.chunk.js": "/invex-DS/static/js/2.5c57cc26.chunk.js",
+    "static/js/2.5c57cc26.chunk.js.map": "/invex-DS/static/js/2.5c57cc26.chunk.js.map",
     "static/js/3.1024cbcd.chunk.js": "/invex-DS/static/js/3.1024cbcd.chunk.js",
     "static/js/3.1024cbcd.chunk.js.map": "/invex-DS/static/js/3.1024cbcd.chunk.js.map",
     "index.html": "/invex-DS/index.html",
     "static/css/main.30ca3b82.chunk.css.map": "/invex-DS/static/css/main.30ca3b82.chunk.css.map",
-    "static/js/2.af3fd2a7.chunk.js.LICENSE.txt": "/invex-DS/static/js/2.af3fd2a7.chunk.js.LICENSE.txt",
+    "static/js/2.5c57cc26.chunk.js.LICENSE.txt": "/invex-DS/static/js/2.5c57cc26.chunk.js.LICENSE.txt",
     "static/media/logo.e1690405.svg": "/invex-DS/static/media/logo.e1690405.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.e80177fe.js",
-    "static/js/2.af3fd2a7.chunk.js",
+    "static/js/2.5c57cc26.chunk.js",
     "static/css/main.30ca3b82.chunk.css",
-    "static/js/main.e7fde124.chunk.js"
+    "static/js/main.6a2ea6c4.chunk.js"
   ]
 }
