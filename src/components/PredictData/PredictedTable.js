@@ -59,7 +59,7 @@ const PredicateTable = ({
           <TableBody>
             <TableRow>
               <TableCell align="center">
-                <b>Predicted High</b>
+                <b>Predicted High (Open To High)</b>
               </TableCell>
               {predicted_high.map((data, index) => {
                 console.log(data);
@@ -82,7 +82,7 @@ const PredicateTable = ({
             </TableRow>
             <TableRow>
               <TableCell align="center">
-                <b>Predicted Low</b>
+                <b>Predicted Low (Open To Low)</b>
               </TableCell>
               {predicted_low.map((data, index) => {
                 return (

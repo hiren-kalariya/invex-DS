@@ -34,6 +34,23 @@ import { makeStyles } from "@mui/styles";
 
 import axios from "axios";
 import DeviationTable from "./deviationTable";
+
+const GetTitle = (timestamp) => {
+  switch (timestamp) {
+    case "5":
+      return "Fixed Predicted";
+    case "10":
+      return "Fixed to next 7 day ";
+    case "20":
+      return "Fixed to next 50 day";
+    case "60":
+      return "Sami quaterly predication";
+
+    default:
+      return "";
+  }
+};
+
 const PredictData = () => {
   const [ticker, setTicker] = useState("");
   const [percentage, setPercentage] = useState(0);
@@ -74,6 +91,12 @@ const PredictData = () => {
     } else {
       console.log(ticker);
       setOpenBackDrop(true);
+      console.log("API CAll", {
+        ticker: ticker,
+        filter_days: filterDays,
+        percentage: percentage,
+        in_date: in_date,
+      });
       axios
         .post(process.env.REACT_APP_BASE_URL + "/predict_price", {
           ticker: ticker,
@@ -246,15 +269,15 @@ const PredictData = () => {
                 marginTop: "1rem",
               }}
             >
-              <ListItem>
-                <ListItemText
+              {/* <ListItem> */}
+              {/* <ListItemText
                   primary="O to H Volatility"
                   secondary={
                     changeFloat(predictData[timePeriod]["O to H"]) + "%"
                   }
                   classes={{ primary: classes.text }}
-                />
-                <Divider orientation="vertical" variant="middle" flexItem />
+                /> */}
+              {/* <Divider orientation="vertical" variant="middle" flexItem />
                 <ListItemText
                   primary="O to L Volatility"
                   secondary={
@@ -262,7 +285,7 @@ const PredictData = () => {
                   }
                   classes={{ primary: classes.text }}
                 />
-              </ListItem>
+              </ListItem> */}
               {/* <Divider />
                                 <ListItem>
                                     <ListItemText 
@@ -273,13 +296,13 @@ const PredictData = () => {
                                         secondary={changeFloat(predictData[timePeriod]["predicted_low"])} />
                                 </ListItem> */}
 
-              <Divider />
+              {/* <Divider /> */}
 
               {predictData[timePeriod]["month_fixed_high"] &&
               predictData[timePeriod]["month_fixed_high"].length > 0 ? (
                 <Fragment>
                   <PredicateTable
-                    tableHeading="Month Predicted"
+                    tableHeading="Monthly Predicted"
                     percentage={predictData[timePeriod]["percentage"]}
                     predicted_high={predictData[timePeriod]["month_fixed_high"]}
                     predicted_low={predictData[timePeriod]["month_fixed_low"]}
@@ -304,19 +327,19 @@ const PredictData = () => {
                       first={predictData[timePeriod]["month_pred_final_TS"]}
                     />
                   </ListItem>
+                  <Divider />
                 </Fragment>
               ) : (
                 ""
               )}
 
               {/* ************************************************ Fixed Predicted Table  *************************************************************************** */}
-              <Divider />
 
               {predictData[timePeriod]["fixed_predicteed_high"] &&
               predictData[timePeriod]["fixed_predicteed_high"].length > 0 ? (
                 <Fragment>
                   <PredicateTable
-                    tableHeading="Fixed Predicted"
+                    tableHeading={GetTitle(timePeriod)}
                     percentage={predictData[timePeriod]["percentage"]}
                     predicted_high={
                       predictData[timePeriod]["fixed_predicteed_high"]
@@ -330,37 +353,37 @@ const PredictData = () => {
                   <Divider />
                   <ListItem style={{ flexWrap: "wrap" }}>
                     <DeviationTable
-                      tableHeading="1st SD"
+                      tableHeading="1st SD (Open To Open)"
                       first_percent={predictData[timePeriod]["first_percent"]}
                       first={
                         predictData[timePeriod]["fixed_predicted_first_std"]
                       }
                     />
                     <DeviationTable
-                      tableHeading="2nd SD"
+                      tableHeading="2nd SD (Open To Open)"
                       first_percent={predictData[timePeriod]["second_percent"]}
                       first={
                         predictData[timePeriod]["fixed_predicted_first_std"]
                       }
                     />
                     <DeviationTable
-                      tableHeading="3rd SD"
+                      tableHeading="3rd SD (Open To Open)"
                       first_percent={predictData[timePeriod]["third_percent"]}
                       first={
                         predictData[timePeriod]["fixed_predicted_third_std"]
                       }
                     />
                   </ListItem>
+                  <Divider />
                 </Fragment>
               ) : (
                 ""
               )}
 
-              <Divider />
               {/* ************************************************ Predicted Table  *************************************************************************** */}
 
               <PredicateTable
-                tableHeading="Predicted"
+                tableHeading="Predicted Base On High And Low"
                 percentage={predictData[timePeriod]["percentage"]}
                 predicted_high={predictData[timePeriod]["predicted_high"]}
                 OtoHpercent={predictData[timePeriod]["OtoHpercent"]}
