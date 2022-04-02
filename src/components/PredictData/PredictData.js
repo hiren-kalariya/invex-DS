@@ -40,11 +40,11 @@ const GetTitle = (timestamp) => {
     case "5":
       return "Fixed Predicted";
     case "10":
-      return "Fixed to next 7 day ";
+      return "Next Week Prediction(5 Trading Days)";
     case "20":
-      return "Fixed to next 50 day";
+      return "Next Two Week Prediction(10 Trading Days)";
     case "60":
-      return "Sami quaterly predication";
+      return "Semi Quarterly Prediction(30 Trading Days)";
 
     default:
       return "";
@@ -302,7 +302,7 @@ const PredictData = () => {
               predictData[timePeriod]["month_fixed_high"].length > 0 ? (
                 <Fragment>
                   <PredicateTable
-                    tableHeading="Monthly Predicted"
+                    tableHeading="Next Month Prediction(20 Trading Days)"
                     percentage={predictData[timePeriod]["percentage"]}
                     predicted_high={predictData[timePeriod]["month_fixed_high"]}
                     predicted_low={predictData[timePeriod]["month_fixed_low"]}
@@ -383,7 +383,7 @@ const PredictData = () => {
               {/* ************************************************ Predicted Table  *************************************************************************** */}
 
               <PredicateTable
-                tableHeading="Predicted Base On High And Low"
+                tableHeading="Prediction Based On High & Low"
                 percentage={predictData[timePeriod]["percentage"]}
                 predicted_high={predictData[timePeriod]["predicted_high"]}
                 OtoHpercent={predictData[timePeriod]["OtoHpercent"]}
