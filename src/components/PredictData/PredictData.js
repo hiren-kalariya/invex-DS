@@ -184,7 +184,7 @@ const PredictData = () => {
               value={filterDays}
               label="Age"
               onChange={(e) => setFilterDays(e.target.value)}
-              sx={{ marginTop: 2, marginLeft: 1, padding: 0 }}
+              sx={{ marginTop: 2.5, marginLeft: 1, padding: 0 }}
             >
               <MenuItem value={180}>6 Months</MenuItem>
               <MenuItem value={360}>1 Years</MenuItem>
@@ -194,7 +194,10 @@ const PredictData = () => {
           </Box>
           <Box className="my-2 mx-2 ">
             <p className="mb-1 my-auto mx-2 fw-bolder">Percentage</p>
-            <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
+            <FormControl
+              sx={{ m: 1, marginTop: 2, width: "25ch" }}
+              variant="outlined"
+            >
               <OutlinedInput
                 type="number"
                 value={percentage}
@@ -207,7 +210,10 @@ const PredictData = () => {
 
           <Box className="my-2 mx-2 ">
             <p className="mb-1 my-auto mx-2 fw-bolder">Date</p>
-            <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
+            <FormControl
+              sx={{ m: 1, marginTop: 2, width: "25ch" }}
+              variant="outlined"
+            >
               <OutlinedInput
                 type="Date"
                 value={in_date}
