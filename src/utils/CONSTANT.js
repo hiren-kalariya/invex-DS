@@ -1,4 +1,5 @@
 const CONSTANT = {
+  OPTION_TABLE_TITLE: "Option Table",
   TOP_NAVIGATION_MANU_ITEMS: [
     {
       id: 0,
@@ -24,6 +25,11 @@ const CONSTANT = {
       id: 4,
       path: "/predicate-csv",
       name: "Predicate CSV",
+    },
+    {
+      id: 5,
+      path: "/option",
+      name: "Option",
     },
   ],
 };
