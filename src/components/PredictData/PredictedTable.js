@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 import {
   ListItemText,
-  TextField,
   Table,
   TableHead,
   TableRow,
@@ -62,7 +61,6 @@ const PredicateTable = ({
                 <b>Predicted High (Open To High)</b>
               </TableCell>
               {predicted_high.map((data, index) => {
-                console.log(data);
                 return (
                   <TableCell
                     className={index === 0 ? classes.specialCell : ""}

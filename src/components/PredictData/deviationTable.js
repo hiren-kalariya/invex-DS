@@ -1,7 +1,5 @@
-import React, { Fragment } from "react";
+import React from "react";
 import {
-  ListItemText,
-  TextField,
   Table,
   TableHead,
   TableRow,
@@ -9,19 +7,7 @@ import {
   TableBody,
 } from "@mui/material";
 
-import { makeStyles } from "@mui/styles";
-
 const DeviationTable = ({ tableHeading, first_percent, first }) => {
-  const useStyles = makeStyles({
-    text: {
-      fontWeight: "bold",
-    },
-    specialCell: {
-      backgroundColor: "#0F062B",
-      color: "white",
-    },
-  });
-  const classes = useStyles();
   const changeFloat = (data) => {
     return parseFloat(data).toFixed(2);
   };

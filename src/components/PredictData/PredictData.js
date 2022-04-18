@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from "react";
+import axios from "axios";
 import {
   Autocomplete,
   Box,
@@ -14,25 +15,15 @@ import {
   Grow,
   List,
   ListItem,
-  ListItemText,
   Divider,
   TextField,
   Backdrop,
   CircularProgress,
-  TableContainer,
-  Table,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableBody,
 } from "@mui/material";
 
 import PredicateTable from "./PredictedTable";
 import tickerData from "./TickerData";
 
-import { makeStyles } from "@mui/styles";
-
-import axios from "axios";
 import DeviationTable from "./deviationTable";
 
 const GetTitle = (timestamp) => {
@@ -68,18 +59,6 @@ const PredictData = () => {
 
   const [timePeriod, setTimePeriod] = useState("5");
 
-  const useStyles = makeStyles({
-    text: {
-      fontWeight: "bold",
-    },
-    specialCell: {
-      backgroundColor: "#0F062B",
-      color: "white",
-    },
-  });
-
-  const classes = useStyles();
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (ticker === "") {
@@ -89,14 +68,8 @@ const PredictData = () => {
       setErrMsg("Percentage Should between 0-100!");
       setOpen(true);
     } else {
-      console.log(ticker);
       setOpenBackDrop(true);
-      console.log("API CAll", {
-        ticker: ticker,
-        filter_days: filterDays,
-        percentage: percentage,
-        in_date: in_date,
-      });
+
       axios
         .post(process.env.REACT_APP_BASE_URL + "/predict_price", {
           ticker: ticker,
@@ -105,13 +78,11 @@ const PredictData = () => {
           in_date: in_date,
         })
         .then((response) => {
-          console.log(response);
           setPredictData(response.data);
           setDataLoaded(true);
           setOpenBackDrop(false);
         })
         .catch((e) => {
-          console.log(e.response);
           setErrMsg("Something went wrong!");
           setOpen(true);
           setOpenBackDrop(false);
@@ -134,10 +105,6 @@ const PredictData = () => {
 
   const unSelected = {
     "&:hover": { color: "white", backgroundColor: "#0F062B" },
-  };
-
-  const changeFloat = (data) => {
-    return parseFloat(data).toFixed(2);
   };
 
   return (

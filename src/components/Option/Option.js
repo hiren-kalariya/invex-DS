@@ -28,7 +28,8 @@ export function Option() {
     Object.values(out_2).map((data, index) => {
       let columeData = [];
       Object.values(data).map((value) => {
-        columeData.push(value);
+        if (value == null || value == "") columeData.push("null");
+        else columeData.push(value);
       });
       OptionDataTabale.push(columeData);
     });
@@ -44,9 +45,8 @@ export function Option() {
     setOptionHeading(
       lable.map((heading, index) => {
         return {
-          field: index,
-          headerName: heading,
-          width: index == 0 ? 200 : 100,
+          name: "index_" + index,
+          label: heading,
         };
       })
     );
@@ -55,7 +55,7 @@ export function Option() {
       const b = {};
       b.id = index;
       row.map((data, index) => {
-        b[index] = data;
+        b["index_" + index] = data;
       });
       a.push(b);
     });
@@ -65,41 +65,31 @@ export function Option() {
   }, []);
 
   const optionDataRowSelectHandler = (selectedRow) => {
-    console.log("hi", selectedRow);
-
     setDataSets(
       selectedRow.map((index) => {
-        const row = Object.values(OptionData[index]);
+        const row = Object.values(OptionData[index.dataIndex]);
         return {
-          label: row[0],
-          data: row.slice(1, OptionData.length),
+          label: row[1],
+          data: row.slice(2, OptionData.length),
           borderColor:
             "rgb(" +
-            colors[row[0]].r +
+            colors[row[1]].r +
             "," +
-            colors[row[0]].g +
+            colors[row[1]].g +
             "," +
-            colors[row[0]].b +
+            colors[row[1]].b +
             ")",
           backgroundColor:
             "rgba(" +
-            colors[row[0]].r +
+            colors[row[1]].r +
             "," +
-            colors[row[0]].g +
+            colors[row[1]].g +
             "," +
-            colors[row[0]].b +
+            colors[row[1]].b +
             ", 0.5)",
         };
       })
     );
-
-    // for (let i = 0; i < OptionData.length; i++) {
-    //   if (selectedOption.has(OptionData[i][0])) {
-    //     const lable = OptionData[i][0];
-    //     localDataSet.push();
-    //   }
-    // }
-    // setDataSets(localDataSet);
   };
 
   return (
