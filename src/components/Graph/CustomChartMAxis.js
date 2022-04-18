@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -8,8 +8,8 @@ import {
   Title,
   Tooltip,
   Legend,
-} from 'chart.js';
-import { Line } from 'react-chartjs-2';
+} from "chart.js";
+import { Line } from "react-chartjs-2";
 
 ChartJS.register(
   CategoryScale,
@@ -21,59 +21,58 @@ ChartJS.register(
   Legend
 );
 
-const CustomChartMAxis = ({chartLables, dataSets}) => {
-
+const CustomChartMAxis = ({ chartLables, dataSets }) => {
   const options = {
     responsive: true,
     interaction: {
-        mode: 'index',
-        intersect: false,
+      mode: "index",
+      intersect: false,
     },
     stacked: false,
     plugins: {
       legend: {
-        position: 'top',
+        position: "top",
       },
       title: {
         display: true,
-        text: 'Invex Chart',
+        text: "Invex Chart",
       },
     },
     scales: {
-        y: {
-            type: 'linear',
-            display: true,
-            position: 'left',
-        },
-        y1: {
-            type: 'linear',
-            display: true,
-            position: 'right',
+      y: {
+        type: "linear",
+        display: true,
+        position: "left",
+      },
+      y1: {
+        type: "linear",
+        display: true,
+        position: "right",
 
-            grid: {
-                drawOnChartArea: false,
-            },
+        grid: {
+          drawOnChartArea: false,
         },
-        x: {
-            ticks: {
-                autoSkip: false,
-                maxRotation: 90,
-                minRotation: 0
-            }
+      },
+      x: {
+        ticks: {
+          autoSkip: false,
+          maxRotation: 90,
+          minRotation: 0,
         },
-    }
+      },
+    },
   };
 
-  // console.log(chartLables);
-  // console.log(dataSets);
-
   const data = {
-    labels:chartLables,
+    labels: chartLables,
     datasets: dataSets,
   };
 
   return (
-    <div style={{justifyContent:"space-around"}} className=' card d-flex flex-row flex-wrap align-items-center w-100 p-4 mt-4 mb-2'>
+    <div
+      style={{ justifyContent: "space-around" }}
+      className=" card d-flex flex-row flex-wrap align-items-center w-100 p-4 mt-4 mb-2"
+    >
       <Line options={options} data={data} />
     </div>
   );

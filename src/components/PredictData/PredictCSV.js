@@ -1,6 +1,5 @@
 import React, { Fragment, useState } from "react";
 import {
-  Autocomplete,
   Box,
   MenuItem,
   ButtonGroup,
@@ -14,17 +13,9 @@ import {
   Grow,
   List,
   ListItem,
-  ListItemText,
   Divider,
-  TextField,
   Backdrop,
   CircularProgress,
-  TableContainer,
-  Table,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableBody,
 } from "@mui/material";
 
 import PredicateTable from "./PredictedTable";
@@ -97,13 +88,11 @@ const PredictCSV = () => {
       axios
         .post(process.env.REACT_APP_BASE_URL + "/upload_csv", formData)
         .then((response) => {
-          console.log(response);
           setPredictData(response.data);
           setDataLoaded(true);
           setOpenBackDrop(false);
         })
         .catch((e) => {
-          console.log(e.response);
           setErrMsg("Something went wrong!");
           setOpen(true);
           setOpenBackDrop(false);
@@ -128,12 +117,11 @@ const PredictCSV = () => {
     "&:hover": { color: "white", backgroundColor: "#0F062B" },
   };
 
-  const changeFloat = (data) => {
-    return parseFloat(data).toFixed(2);
-  };
+  // const changeFloat = (data) => {
+  //   return parseFloat(data).toFixed(2);
+  // };
 
   const fileuploadHandler = (e) => {
-    console.log("File Upload", e.target.files.item(0));
     setCsvFileName(e.target.files.item(0).name);
     setCsvFile(e.target.files.item(0));
   };
@@ -174,10 +162,8 @@ const PredictCSV = () => {
                   className={classes.button}
                   sx={{
                     height: "26px",
-                    overflow: "auto",
                     whiteSpace: "nowrap",
                     padding: 0,
-                    whiteSpace: "nowrap",
                     overflow: "hidden",
                     textOverflow: "ellipsis",
                     width: "100%",

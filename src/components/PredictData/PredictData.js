@@ -89,14 +89,8 @@ const PredictData = () => {
       setErrMsg("Percentage Should between 0-100!");
       setOpen(true);
     } else {
-      console.log(ticker);
       setOpenBackDrop(true);
-      console.log("API CAll", {
-        ticker: ticker,
-        filter_days: filterDays,
-        percentage: percentage,
-        in_date: in_date,
-      });
+
       axios
         .post(process.env.REACT_APP_BASE_URL + "/predict_price", {
           ticker: ticker,
@@ -105,13 +99,11 @@ const PredictData = () => {
           in_date: in_date,
         })
         .then((response) => {
-          console.log(response);
           setPredictData(response.data);
           setDataLoaded(true);
           setOpenBackDrop(false);
         })
         .catch((e) => {
-          console.log(e.response);
           setErrMsg("Something went wrong!");
           setOpen(true);
           setOpenBackDrop(false);

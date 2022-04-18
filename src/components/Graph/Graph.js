@@ -58,7 +58,7 @@ const Graph = () => {
       .then((response) => {
         const data = response.data;
         const localCompName = Object.keys(data["sell"]);
-        console.log("localCompName", localCompName);
+
         let localColors = {};
         localCompName.forEach((lable) => {
           let r = Math.floor(Math.random() * 255);
@@ -172,7 +172,6 @@ const Graph = () => {
         });
       }
     }
-    console.log("localDataSet", localDataSet);
     setDataSets(localDataSet);
     setDataSetsChange(localDataSetChange);
   }, [
@@ -217,7 +216,6 @@ const Graph = () => {
     setSelectedCompanyName((current) => _without(current, value));
   };
 
-  console.log("object", dataSetsChange);
   return (
     <div className="container" style={{ padding: "50px 0 0" }}>
       <div className="offset-0 col-12">

@@ -13,7 +13,6 @@ import MenuItem from "@mui/material/MenuItem";
 
 import logo from "../../assets/logo.svg";
 import { Link } from "react-router-dom";
-import { CloudUpload, Compare } from "@material-ui/icons";
 import CONSTANT from "../../utils/CONSTANT";
 
 const InvexAppBar = () => {

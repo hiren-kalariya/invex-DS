@@ -49,15 +49,11 @@ const CustomChart = ({ title, chartLables, dataSets }) => {
     },
   };
 
-  // console.log(chartLables);
-  // console.log(dataSets);
-
   const data = {
     labels: chartLables,
     datasets: dataSets,
   };
 
-  // console.log("options", options, "data", data);
   return (
     <div
       style={{ justifyContent: "space-around" }}

@@ -65,8 +65,6 @@ export function Option() {
   }, []);
 
   const optionDataRowSelectHandler = (selectedRow) => {
-    console.log("hi", selectedRow);
-
     setDataSets(
       selectedRow.map((index) => {
         const row = Object.values(OptionData[index]);
