@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from "react";
+import axios from "axios";
 import {
   Autocomplete,
   Box,
@@ -14,25 +15,15 @@ import {
   Grow,
   List,
   ListItem,
-  ListItemText,
   Divider,
   TextField,
   Backdrop,
   CircularProgress,
-  TableContainer,
-  Table,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableBody,
 } from "@mui/material";
 
 import PredicateTable from "./PredictedTable";
 import tickerData from "./TickerData";
 
-import { makeStyles } from "@mui/styles";
-
-import axios from "axios";
 import DeviationTable from "./deviationTable";
 
 const GetTitle = (timestamp) => {
@@ -67,18 +58,6 @@ const PredictData = () => {
   const [dataLoaded, setDataLoaded] = useState(false);
 
   const [timePeriod, setTimePeriod] = useState("5");
-
-  const useStyles = makeStyles({
-    text: {
-      fontWeight: "bold",
-    },
-    specialCell: {
-      backgroundColor: "#0F062B",
-      color: "white",
-    },
-  });
-
-  const classes = useStyles();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -126,10 +105,6 @@ const PredictData = () => {
 
   const unSelected = {
     "&:hover": { color: "white", backgroundColor: "#0F062B" },
-  };
-
-  const changeFloat = (data) => {
-    return parseFloat(data).toFixed(2);
   };
 
   return (

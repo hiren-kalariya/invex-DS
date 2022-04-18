@@ -108,7 +108,7 @@ function Index() {
                     <span class="visually-hidden">Loading...</span>
                   </div>
                 </div>
-              ) : isDataLoaded != 0 ? (
+              ) : isDataLoaded !== 0 ? (
                 <MainTable companies={companies} columns={columns} />
               ) : null}
             </div>

@@ -71,7 +71,7 @@ const PredictCSV = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (csvFile == "") {
+    if (csvFile === "") {
       setErrMsg("CSV file Should between selected");
       setOpen(true);
     } else if (percentage < 0 || percentage > 100) {

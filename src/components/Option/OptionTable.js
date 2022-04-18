@@ -1,24 +1,36 @@
 import React from "react";
-
-import { DataGrid } from "@mui/x-data-grid";
+import { createTheme, responsiveFontSizes } from "@mui/material";
+import { ThemeProvider } from "@mui/styles";
+import MUIDataTable from "mui-datatables";
 
 export function OptionTable({
   OptionData,
   OptionHeading,
   optionDataRowSelectHandler,
+  isLoaded,
 }) {
+  if (!isLoaded) return <></>;
+  console.log("companies", OptionData);
+  console.log("columns", OptionHeading);
+  let theme = createTheme();
+  theme = responsiveFontSizes(theme);
+  const handleClick = (newSelectionModel, rowState) => {
+    console.log("rowState", rowState);
+    console.log("newSelectionModel", newSelectionModel);
+  };
   return (
-    <div style={{ height: 400, width: "100%" }}>
-      <DataGrid
-        rows={OptionData}
+    <ThemeProvider theme={theme}>
+      <MUIDataTable
+        data={OptionData}
         columns={OptionHeading}
-        pageSize={10}
-        checkboxSelection
-        pagination
-        onSelectionModelChange={(newSelectionModel) => {
-          optionDataRowSelectHandler(newSelectionModel);
+        options={{
+          selectableRows: true,
+          onRowsSelect: (curRowSelected, allRowsSelected) => {
+            optionDataRowSelectHandler(allRowsSelected);
+          },
         }}
+        className="my-2"
       />
-    </div>
+    </ThemeProvider>
   );
 }
