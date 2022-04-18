@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/invex-DS/static/css/main.30ca3b82.chunk.css",
-    "main.js": "/invex-DS/static/js/main.3ba5b005.chunk.js",
-    "main.js.map": "/invex-DS/static/js/main.3ba5b005.chunk.js.map",
-    "runtime-main.js": "/invex-DS/static/js/runtime-main.e80177fe.js",
-    "runtime-main.js.map": "/invex-DS/static/js/runtime-main.e80177fe.js.map",
-    "static/js/2.0dab35e0.chunk.js": "/invex-DS/static/js/2.0dab35e0.chunk.js",
-    "static/js/2.0dab35e0.chunk.js.map": "/invex-DS/static/js/2.0dab35e0.chunk.js.map",
-    "static/js/3.1024cbcd.chunk.js": "/invex-DS/static/js/3.1024cbcd.chunk.js",
-    "static/js/3.1024cbcd.chunk.js.map": "/invex-DS/static/js/3.1024cbcd.chunk.js.map",
+    "main.js": "/invex-DS/static/js/main.beed331e.chunk.js",
+    "main.js.map": "/invex-DS/static/js/main.beed331e.chunk.js.map",
+    "runtime-main.js": "/invex-DS/static/js/runtime-main.b37f9009.js",
+    "runtime-main.js.map": "/invex-DS/static/js/runtime-main.b37f9009.js.map",
+    "static/js/2.1c69baf3.chunk.js": "/invex-DS/static/js/2.1c69baf3.chunk.js",
+    "static/js/2.1c69baf3.chunk.js.map": "/invex-DS/static/js/2.1c69baf3.chunk.js.map",
+    "static/js/3.5b56973f.chunk.js": "/invex-DS/static/js/3.5b56973f.chunk.js",
+    "static/js/3.5b56973f.chunk.js.map": "/invex-DS/static/js/3.5b56973f.chunk.js.map",
     "index.html": "/invex-DS/index.html",
     "static/css/main.30ca3b82.chunk.css.map": "/invex-DS/static/css/main.30ca3b82.chunk.css.map",
-    "static/js/2.0dab35e0.chunk.js.LICENSE.txt": "/invex-DS/static/js/2.0dab35e0.chunk.js.LICENSE.txt",
+    "static/js/2.1c69baf3.chunk.js.LICENSE.txt": "/invex-DS/static/js/2.1c69baf3.chunk.js.LICENSE.txt",
     "static/media/logo.e1690405.svg": "/invex-DS/static/media/logo.e1690405.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.e80177fe.js",
-    "static/js/2.0dab35e0.chunk.js",
+    "static/js/runtime-main.b37f9009.js",
+    "static/js/2.1c69baf3.chunk.js",
     "static/css/main.30ca3b82.chunk.css",
-    "static/js/main.3ba5b005.chunk.js"
+    "static/js/main.beed331e.chunk.js"
   ]
 }
