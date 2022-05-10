@@ -13,6 +13,7 @@ function MainTable({ companies, columns }) {
         columns={columns}
         options={{ selectableRows: false }}
         className="my-2"
+        sx={{ textAlign: "center" }}
       />
     </ThemeProvider>
   );

@@ -6,10 +6,11 @@ import Controls from "./Controls";
 import MoreInfo from "./MoreInfo";
 
 const columns = [
-  { name: "company_name", label: "Company name" },
+  { name: "company_name", label: "Company Name" },
   { name: "call_ir", label: "Call IR" },
   { name: "put_ir", label: "Put IR" },
-  { name: "cp_ratio", label: "CP ratio" },
+  { name: "cp_ratio", label: "CP Ratio" },
+  { name: "cp_ratio_median", label: "CP Ratio Median" },
   { name: "hvtf", label: "HVTF" },
   { name: "action", label: "See More" },
 ];
@@ -63,7 +64,8 @@ function Index() {
           call_ir: value2[0] ? Number(value2[0].toFixed(2)) : "-",
           put_ir: value2[1] ? Number(value2[1].toFixed(2)) : "-",
           cp_ratio: value2[2] ? Number(value2[2].toFixed(2)) : "-",
-          hvtf: value2[3] ? Number(value2[3].toFixed(2)) : "-",
+          cp_ratio_median: value2[3] ? Number(value2[3].toFixed(2)) : "-",
+          hvtf: value2[4] ? Number(value2[4].toFixed(2)) : "-",
           action: (
             <button
               class="btn btn-outline-success"
