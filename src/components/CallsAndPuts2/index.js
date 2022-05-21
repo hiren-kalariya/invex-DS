@@ -12,6 +12,9 @@ const columns = [
   { name: "cp_ratio", label: "CP Ratio" },
   { name: "cp_ratio_median", label: "CP Ratio Median" },
   { name: "hvtf", label: "HVTF" },
+  { name: "close_value", label: "Close Value" },
+  { name: "total_vol", label: "Total Vol" },
+  { name: "total_oi", label: "Total OI" },
   { name: "action", label: "See More" },
 ];
 
@@ -25,6 +28,7 @@ function Index() {
   });
 
   const handleShowMore = (key, value) => {
+    console.log(value);
     setShowMoreDetails({ show: true, data: { key: key, value: { ...value } } });
   };
 
@@ -66,6 +70,9 @@ function Index() {
           cp_ratio: value2[2] ? Number(value2[2].toFixed(2)) : "-",
           cp_ratio_median: value2[3] ? Number(value2[3].toFixed(2)) : "-",
           hvtf: value2[4] ? Number(value2[4].toFixed(2)) : "-",
+          close_value: value2[5] ? Number(value2[5].toFixed(2)) : "0",
+          total_vol: value2[6] ? Number(value2[6].toFixed(2)) : "0",
+          total_oi: value2[7] ? Number(value2[7].toFixed(2)) : "0",
           action: (
             <button
               class="btn btn-outline-success"

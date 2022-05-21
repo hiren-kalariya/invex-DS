@@ -41,6 +41,7 @@ function MoreInfo({ showMoreDetails, handleCloseModal }) {
               <tbody>
                 {Object.entries(showMoreDetails.data["value"]).map(
                   ([key, value]) => {
+                    console.log(value);
                     return (
                       <tr>
                         <td>{key}</td>
