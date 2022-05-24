@@ -10,6 +10,9 @@ function Controls({ handleSubmit }) {
   const [callRange, setCallRange] = useState([0.5, 20]);
   const [putRange, setputRange] = useState([0.5, 50]);
   const [CPRange, setCPRange] = useState([0.5, 20]);
+  const [closeValue, setCloseValue] = useState([0.5, 20]);
+  const [volValue, setVolValue] = useState([0.5, 20]);
+  const [oiValue, setOiValue] = useState([0.5, 20]);
   const [filterDays, setFilterDays] = useState("180");
 
   const handleExpiration = (e) => {
@@ -87,7 +90,7 @@ function Controls({ handleSubmit }) {
         className="flex-wrap d-flex flex-row justify-content-between my-2 card"
         style={{ overflow: "auto" }}
       >
-        <div className=" card d-flex flex-row flex-wrap align-items-center justify-content-between w-100 p-4">
+        <div className=" card d-flex flex-row flex-wrap align-items-center justify-content-between w-100 p-4 ">
           <Box sx={{ width: 150 }} className="mx-2 ">
             <p className="mx-2 my-auto fw-bolder">Call Range</p>
             <div className="d-flex flex-row my-1 justify-content-center">
@@ -185,40 +188,143 @@ function Controls({ handleSubmit }) {
           </Box>
 
           <Box sx={{ width: 150 }} className="mx-2 ">
-            <p className="my-auto mx-2 fw-bolder">Filter Days</p>
-            {/* <InputLabel id="demo-simple-select-label">Filter Days</InputLabel> */}
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={filterDays}
-              label="Age"
-              onChange={handleFilterDaysChange}
-              sx={{ marginTop: 1, padding: 0 }}
-            >
-              <MenuItem value={"180"}>6 Months</MenuItem>
-              <MenuItem value={"720"}>2 Years</MenuItem>
-              <MenuItem value={"max"}>MAX</MenuItem>
-            </Select>
+            <p className="mx-2 my-auto fw-bolder">Close Value</p>
+            <div className="d-flex flex-row my-1 justify-content-center">
+              <div className="d-flex flex-column  mx-1 ">
+                <label>From</label>
+                <input
+                  type="number"
+                  min={0}
+                  step={0.5}
+                  className="form-control "
+                  value={closeValue[0]}
+                  onChange={(e) => {
+                    setCloseValue([e.target.value, closeValue[1]]);
+                  }}
+                />
+              </div>
+              <div className="d-flex flex-column  mx-1">
+                <label>To</label>
+                <input
+                  type="number"
+                  min={0}
+                  step={0.5}
+                  className="form-control "
+                  value={closeValue[1]}
+                  onChange={(e) => {
+                    setCloseValue([closeValue[0], e.target.value]);
+                  }}
+                />
+              </div>
+            </div>
           </Box>
 
-          <button
-            className="my_button my-auto w-auto"
-            onClick={() => {
-              handleSubmit(
-                `{
+          <div className=" d-flex flex-row flex-wrap align-items-center justify-content-between w-100 mt-5 ">
+            <Box sx={{ width: 150 }} className="mx-2">
+              <p className="my-auto mx-2 fw-bolder">Vol Value</p>
+              <div className="d-flex flex-row my-1">
+                <div className="d-flex flex-column align-items-start mx-1 ">
+                  <label>From</label>
+                  <input
+                    type="number"
+                    min={0}
+                    step={0.5}
+                    className="form-control "
+                    value={volValue[0]}
+                    onChange={(e) => {
+                      setVolValue([e.target.value, volValue[1]]);
+                    }}
+                  />
+                </div>
+                <div className="d-flex flex-column align-items-start mx-1">
+                  <label>To</label>
+                  <input
+                    type="number"
+                    min={0}
+                    step={0.5}
+                    className="form-control "
+                    value={volValue[1]}
+                    onChange={(e) => {
+                      setVolValue([volValue[0], e.target.value]);
+                    }}
+                  />
+                </div>
+              </div>
+            </Box>
+
+            <Box sx={{ width: 150 }} className="mx-2">
+              <p className="my-auto mx-2 fw-bolder">OI Value</p>
+              <div className="d-flex flex-row my-1">
+                <div className="d-flex flex-column align-items-start mx-1 ">
+                  <label>From</label>
+                  <input
+                    type="number"
+                    min={0}
+                    step={0.5}
+                    className="form-control "
+                    value={oiValue[0]}
+                    onChange={(e) => {
+                      setOiValue([e.target.value, oiValue[1]]);
+                    }}
+                  />
+                </div>
+                <div className="d-flex flex-column align-items-start mx-1">
+                  <label>To</label>
+                  <input
+                    type="number"
+                    min={0}
+                    step={0.5}
+                    className="form-control "
+                    value={oiValue[1]}
+                    onChange={(e) => {
+                      setOiValue([oiValue[0], e.target.value]);
+                    }}
+                  />
+                </div>
+              </div>
+            </Box>
+
+            <Box sx={{ width: 150 }} className="mx-2 ">
+              <p className="my-auto mx-2 fw-bolder">Filter Days</p>
+              {/* <InputLabel id="demo-simple-select-label">Filter Days</InputLabel> */}
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={filterDays}
+                label="Age"
+                onChange={handleFilterDaysChange}
+                sx={{ marginTop: 1, padding: 0 }}
+              >
+                <MenuItem value={"180"}>6 Months</MenuItem>
+                <MenuItem value={"720"}>2 Years</MenuItem>
+                <MenuItem value={"max"}>MAX</MenuItem>
+              </Select>
+            </Box>
+
+            <Box sx={{ width: 150 }} className="mx-2 ">
+              <button
+                className="my_button my-auto w-auto"
+                onClick={() => {
+                  handleSubmit(
+                    `{
                   "month":"${monthInput}",
                   "strike_percent":"${strikeInput}",
                   "date":"${date}",
                   "call_value":"${callRange[0]}_${callRange[1]}",
                   "put_value":"${putRange[0]}_${putRange[1]}",
                   "cp_value":"${CPRange[0]}_${CPRange[1]}",
-                  "filter_days":"${filterDays}"
+                  "filter_days":"${filterDays}",
+                  "close_value":"${closeValue}",
+                  "vol_value":"${volValue}",
+                  "oi_value":"${oiValue}",
                 }`
-              );
-            }}
-          >
-            Submit
-          </button>
+                  );
+                }}
+              >
+                Submit
+              </button>
+            </Box>
+          </div>
         </div>
       </div>
     </React.Fragment>

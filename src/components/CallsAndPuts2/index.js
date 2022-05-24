@@ -40,6 +40,7 @@ function Index() {
   };
 
   const handleSubmit = (body) => {
+    // console.log(body);
     getData(body);
   };
 
