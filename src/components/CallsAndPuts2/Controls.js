@@ -314,9 +314,9 @@ function Controls({ handleSubmit }) {
                   "put_value":"${putRange[0]}_${putRange[1]}",
                   "cp_value":"${CPRange[0]}_${CPRange[1]}",
                   "filter_days":"${filterDays}",
-                  "close_value":"${closeValue}",
-                  "vol_value":"${volValue}",
-                  "oi_value":"${oiValue}",
+                  "close_value":"${closeValue[0]}_${closeValue[1]}",
+                  "vol_value":"${volValue[0]}_${volValue[1]}",
+                  "oi_value":"${oiValue[0]}_${oiValue[1]}"
                 }`
                   );
                 }}
