@@ -10,7 +10,7 @@
     outline: none;
     padding: 8px;
     border-radius: 4px;
-  }
+}
 
 
 @media only screen and (max-width:767px) {
@@ -23,4 +23,30 @@
     .company_details {
         padding: 40px 0 30px 0;
     }
+}
+
+.active {
+    background: #0f062be6;
+    width: 63px;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+}
+
+.deactive {
+    background: #0f062b1b;
+    width: 63px;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.deactive:hover {
+    background: #0f062be6;
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
 }
