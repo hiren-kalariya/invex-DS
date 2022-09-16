@@ -21,6 +21,7 @@ function Controls({ handleSubmit }) {
   const [oiValue, setoiValue] = useState([0, 100000000]);
 
   const [filterDays, setFilterDays] = useState("180");
+  const [erfFilter, setHrfFilter] = useState(true);
   const [callRangeOption, setCallRangeOption] = useState(1);
   const [putRangeOption, setputRangeOption] = useState(1);
   const [CPRangeOption, setCPRangeOption] = useState(1);
@@ -564,6 +565,22 @@ function Controls({ handleSubmit }) {
           </Box>
 
           <Box sx={{ width: 150 }} className="mx-2 ">
+            <p className="my-auto  fw-bolder">ERF Filter</p>
+            {/* <InputLabel id="demo-simple-select-label">Filter Days</InputLabel> */}
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={erfFilter}
+              label="Age"
+              onChange={(e) => setHrfFilter(e.target.value)}
+              sx={{ marginTop: 1, padding: 0 }}
+            >
+              <MenuItem value={true}>ERF</MenuItem>
+              <MenuItem value={false}>Stock</MenuItem>
+            </Select>
+          </Box>
+
+          <Box sx={{ width: 150 }} className="mx-2 ">
             <p className="my-auto  fw-bolder">Filter Days</p>
             {/* <InputLabel id="demo-simple-select-label">Filter Days</InputLabel> */}
             <Select
@@ -592,7 +609,7 @@ function Controls({ handleSubmit }) {
                   "put_value":"${putRange[0]}_${putRange[1]}",
                   "cp_value":"${CPRange[0]}_${CPRange[1]}",
                   "filter_days":"${filterDays}",
-                  "erf":${true},
+                  "erf":${erfFilter},
                   "close_value":"${closeValue[0]}_${closeValue[1]}",
                   "vol_value":"${volValue[0]}_${volValue[1]}",
                   "oi_value":"${oiValue[0]}_${oiValue[1]}"
