@@ -565,7 +565,7 @@ function Controls({ handleSubmit }) {
           </Box>
 
           <Box sx={{ width: 150 }} className="mx-2 ">
-            <p className="my-auto  fw-bolder">ERF Filter</p>
+            <p className="my-auto  fw-bolder">ETF Filter</p>
             {/* <InputLabel id="demo-simple-select-label">Filter Days</InputLabel> */}
             <Select
               labelId="demo-simple-select-label"
@@ -575,7 +575,7 @@ function Controls({ handleSubmit }) {
               onChange={(e) => setHrfFilter(e.target.value)}
               sx={{ marginTop: 1, padding: 0 }}
             >
-              <MenuItem value={true}>ERF</MenuItem>
+              <MenuItem value={true}>ETF</MenuItem>
               <MenuItem value={false}>Stock</MenuItem>
             </Select>
           </Box>
